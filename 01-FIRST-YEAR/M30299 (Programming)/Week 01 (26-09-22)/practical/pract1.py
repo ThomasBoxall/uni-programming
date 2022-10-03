@@ -144,4 +144,4 @@ def binToInt():
             intTot = intTot + (2**conValue)
     print("Integer: ", intTot)
 
-binToInt()
+#binToInt()
