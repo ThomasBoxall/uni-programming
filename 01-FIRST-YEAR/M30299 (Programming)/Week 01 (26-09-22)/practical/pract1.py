@@ -54,7 +54,7 @@ def changeCounter():
     one = int(input("Enter the number of 1p you have: "))
     two = int(input("Enter the number ot 2p you have: "))
     five = int(input("Enter the number of 5p you have: "))
-    oneTot = one * 1
+    oneTot = one
     twoTot = two * 2
     fiveTot = five * 5
     totalMoney = oneTot + twoTot + fiveTot
@@ -68,8 +68,8 @@ def tenHellos():
 # wk01 ex07
 def countTo():
     topNumb = int(input("Enter the number to count to: "))
-    for i in range(topNumb):
-        print(i+1)
+    for i in range(1,topNumb+1):
+        print(i)
 
 # wk01 ex08
 def zoomZoom():
@@ -82,7 +82,7 @@ def weightsTable():
     print("Kilos  Pounds")
     for i in range(0, 110, 10):
         pound = 2.2 * i
-        print(i, "     ", pound)
+        print(i, "\t", pound)
 
 # wk01 ex10
 def futureValue():
@@ -112,8 +112,8 @@ def divideUseSubtract():
     remainder = intOne
     total = 0
     while(remainder >= intTwo):
-        remainder = remainder - intTwo
-        total = total + 1
+        remainder -= intTwo
+        total += 1
     print(total, "r", remainder)
 
 # wk01 challenge03
