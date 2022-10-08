@@ -1,4 +1,3 @@
-Viewers can download
 -- default database DSD 2022
 -- created by Mark Venn
 

@@ -1,0 +1,192 @@
+FILE TO STORE COPY-PASTE OF OUTPUTS OF COMMANDS IN FOR NOTES
+
+up2108121=# \l
+                                   List of databases
+      Name      |     Owner      | Encoding | Collate |  Ctype  |   Access privileges
+----------------+----------------+----------+---------+---------+-----------------------
+ dsd_22         | up2108121      | UTF8     | C.UTF-8 | C.UTF-8 |
+ mongo-2021-fix | mongo-2021-fix | UTF8     | C.UTF-8 | C.UTF-8 |
+ postgres       | postgres       | UTF8     | C.UTF-8 | C.UTF-8 |
+ template0      | postgres       | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +
+                |                |          |         |         | postgres=CTc/postgres
+ template1      | postgres       | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +
+                |                |          |         |         | postgres=CTc/postgres
+ up2108121      | up2108121      | UTF8     | C.UTF-8 | C.UTF-8 |
+(6 rows)
+
+
+
+up2108121=# \c dsd_22
+You are now connected to database "dsd_22" as user "up2108121".
+
+
+
+
+dsd_22=# \d
+                     List of relations
+ Schema |            Name            |   Type   |   Owner   
+--------+----------------------------+----------+-----------
+ public | category                   | table    | up2108121
+ public | category_cat_id_seq        | sequence | up2108121
+ public | cust_order                 | table    | up2108121
+ public | cust_order_cust_ord_id_seq | sequence | up2108121
+ public | customer                   | table    | up2108121
+ public | customer_cust_id_seq       | sequence | up2108121
+ public | manifest                   | table    | up2108121
+ public | manifest_manifest_id_seq   | sequence | up2108121
+ public | product                    | table    | up2108121
+ public | product_prod_id_seq        | sequence | up2108121
+ public | role                       | table    | up2108121
+ public | role_role_id_seq           | sequence | up2108121
+ public | staff                      | table    | up2108121
+ public | staff_staff_id_seq         | sequence | up2108121
+(14 rows)
+
+
+
+
+dsd_22=# \dt
+            List of relations
+ Schema |    Name    | Type  |   Owner
+--------+------------+-------+-----------
+ public | category   | table | up2108121
+ public | cust_order | table | up2108121
+ public | customer   | table | up2108121
+ public | manifest   | table | up2108121
+ public | product    | table | up2108121
+ public | role       | table | up2108121
+ public | staff      | table | up2108121
+(7 rows)
+
+
+
+
+
+dsd_22=# \d role
+                                       Table "public.role"
+  Column   |         Type          | Collation | Nullable |                Default
+-----------+-----------------------+-----------+----------+---------------------------------------
+ role_id   | integer               |           | not null | nextval('role_role_id_seq'::regclass)
+ role_name | character varying(20) |           |          |
+Indexes:
+    "role_pkey" PRIMARY KEY, btree (role_id)
+Referenced by:
+    TABLE "staff" CONSTRAINT "staff_role_fkey" FOREIGN KEY (role) REFERENCES role(role_id)
+
+
+
+
+
+dsd_22=# SELECT * FROM CATEGORY;
+ cat_id |  cat_name   
+--------+-------------
+      1 | Men's Wear
+      2 | Ladies Wear
+      3 | Kid's Wear
+      4 | Outdoor
+      5 | Sport
+      6 | Health
+(6 rows)
+
+
+
+
+
+dsd_22=# select * from category;
+ cat_id |  cat_name   
+--------+-------------
+      1 | Men's Wear
+      2 | Ladies Wear
+      3 | Kid's Wear
+      4 | Outdoor
+      5 | Sport
+      6 | Health
+(6 rows)
+
+
+
+dsd_22=# select * from 'Category';
+ERROR:  syntax error at or near "'Category'"
+LINE 1: select * from 'Category';
+                      ^
+
+
+
+
+dsd_22=# select * from "Category";
+ERROR:  relation "Category" does not exist
+LINE 1: select * from "Category";
+                      ^
+
+
+
+
+
+                      ^
+dsd_22=# select * from 'category';
+ERROR:  syntax error at or near "'category'"
+LINE 1: select * from 'category';
+                      ^
+
+
+
+dsd_22=# select * from "category";
+ cat_id |  cat_name   
+--------+-------------
+      1 | Men's Wear
+      2 | Ladies Wear
+      3 | Kid's Wear
+      4 | Outdoor
+      5 | Sport
+      6 | Health
+(6 rows)
+
+
+
+dsd_22=# SELECT * FROM “category”;
+ERROR:  relation "“category”" does not exist
+LINE 1: SELECT * FROM “category”;
+                      ^
+
+
+
+
+dsd_22=# \d customer
+                                        Table "public.customer"
+   Column   |          Type          | Collation | Nullable |                  Default
+------------+------------------------+-----------+----------+-------------------------------------------      
+ cust_id    | integer                |           | not null | nextval('customer_cust_id_seq'::regclass)       
+ cust_fname | character varying(25)  |           | not null |
+ cust_lname | character varying(35)  |           | not null |
+ addr1      | character varying(50)  |           | not null |
+ addr2      | character varying(50)  |           |          |
+ town       | character varying(60)  |           | not null |
+ postcode   | character(9)           |           | not null |
+ email      | character varying(255) |           | not null |
+Indexes:
+    "customer_pkey" PRIMARY KEY, btree (cust_id)
+Referenced by:
+    TABLE "cust_order" CONSTRAINT "cust_order_cust_id_fkey" FOREIGN KEY (cust_id) REFERENCES customer(cust_id)
+
+
+dsd_22=# CREATE DATABASE week02;
+CREATE DATABASE
+
+
+week02=# CREATE TABLE NEWTABLE(
+week02(# IAMNUMBER INT PRIMARY KEY,
+week02(# IAMSTRING VARCHAR(10)
+week02(# );
+CREATE TABLE
+
+
+
+
+week02=# INSERT INTO NEWTABLE (IAMNUMBER, IAMSTRING) VALUES(12, 'cheese');
+INSERT 0 1
+
+
+
+week02=# INSERT INTO NEWTABLE (IAMNUMBER, IAMSTRING) VALUES(12, 'ham');
+ERROR:  duplicate key value violates unique constraint "newtable_pkey"
+DETAIL:  Key (iamnumber)=(12) already exists.
