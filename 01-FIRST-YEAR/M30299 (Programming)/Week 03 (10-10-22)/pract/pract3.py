@@ -59,6 +59,19 @@ def drawArcheryTarget():
     circle3.draw(win)
     circle3.setFill("yellow")
     input()
+
+# wk03 ex03a improved after demo to Mani - same as above except use loop to reduce lines of code
+def drawArcheryTargetBetter():
+    win = GraphWin("Archery Target", 400, 400)
+    centre = Point(win.getHeight()/2, win.getWidth()/2)
+    colours = ["blue", "red", "yellow"]
+    radius = 150
+    for x in range (0,3):
+        circle = Circle(centre, radius)
+        circle.draw(win)
+        circle.setFill(colours[x])
+        radius = radius - 50
+    input()
   
 # wk03, ex04 use input height and width of rectangle. draw in gui (200x200,assume user enters values less than this), draw rectangle with user values in centre of screen.
 def drawRectangle():
@@ -184,4 +197,5 @@ def plotRainfall():
 #tenStrings()
 #tenColouredRectangles()
 #fiveClickStickFigure()
-plotRainfall()
+#plotRainfall()
+drawArcheryTargetBetter()
