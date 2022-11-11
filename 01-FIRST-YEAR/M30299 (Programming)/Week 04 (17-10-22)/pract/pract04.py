@@ -176,6 +176,6 @@ def wc():
 #nameToNumber()
 #fileInCaps()
 #rainfallChart()
-#rainFallChartGraphical()
+rainFallChartGraphical()
 #rainfallInches()
-wc()
+#wc()
