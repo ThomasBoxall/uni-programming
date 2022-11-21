@@ -238,6 +238,46 @@ def findTheCircle():
                     continueGame = False
 
 
+def betterFindTheCircle():
+    win = GraphWin("Find the Circle", 600, 600)
+    radius = 30
+    continueGame = True
+    score = 0
+    while continueGame == True:
+        # loop through here while player hasn't lost, will break from this loop if the player looses
+        # initialise an individual game here
+        guessesLeft = 10
+        centre = Point(random.randint(0, 600), random.randint(0,600))
+        c =  Circle(centre, radius)
+        c.draw(win) # debug line to display circle on screen
+        won = False # used to break out of the current game and trigger this code to run again
+        prevPos = Point(0,0) # initialise this here
+        clickPos = Point(0,0) # initialise this here
+        while guessesLeft >= 1 and won == False:
+            # this loop allows user to have 10 guesses and can break out if the user wins it
+            guessesLeft -= 1
+            prevPos = clickPos
+            clickPos = win.getMouse()
+            dist = distanceBetweenPoints(clickPos, centre)
+            if dist < radius:
+                # found circle
+                won = True
+                score += 1
+                radius = radius * 0.9 # reduce radius by 10% ready for next game
+                # inner while loop won't run again, this will allow game to start a new level from outer while loop
+            else:
+                if guessesLeft < 9:
+                    # not the first click so can use prevPos to find if further or closer to the circle
+                    print("DIST: ", dist, "DBP: ", distanceBetweenPoints(clickPos, prevPos))
+                    if distanceBetweenPoints(clickPos, prevPos) > dist:
+                        print("further")
+                    else:
+                        print("closer")
+                if guessesLeft <= 0:
+                    # lost game :( break from outer while loop
+                    continueGame = False
+
+
 
 
 
@@ -252,4 +292,5 @@ def findTheCircle():
 #guessTheNumber()
 #tableTennisScorer()
 #clickableBoxOfEyes(6,10)
-findTheCircle()
+#findTheCircle()
+betterFindTheCircle()
