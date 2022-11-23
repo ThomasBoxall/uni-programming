@@ -109,24 +109,30 @@ def drawLinePatchDifferent(win, colours, tl):
 
 def drawLinePatchworkEvenMoreDifferent(win, colours, tl):
     patchSize = 100
-    increment = 10
-    for i in range(0, 10, 1):
-        startOne = Point(i*increment + tl.getX(), tl.getY())
-        endOne = Point(tl.getX()+patchSize, i*increment + tl.getY() + increment)
+    # increment = 10
+    for i in range(0, 100,10):
+        startOne = Point(i + tl.getX(), tl.getY())
+        endOne = Point(tl.getX()+patchSize, i + tl.getY() + 10)
         line(win, startOne, endOne, colours[0])
 
-        startTwo = Point(tl.getX(), tl.getY()+(i*increment))
-        endTwo = Point(i*increment + tl.getX() + increment, tl.getY()+patchSize)
+        startTwo = Point(tl.getX(), tl.getY()+(i))
+        endTwo = Point(i + tl.getX() + 10, tl.getY()+patchSize)
         line(win, startTwo, endTwo, colours[0])
 
 
 def main():
-    win = GraphWin("", 400, 400)
+    win = GraphWin("", 800, 800)
     colours = ["red", "white"]
     #drawLinePatchworkEvenMoreDifferent(win, colours, Point(10,10))
     for i in range(0,4,1):
-        drawLinePatchworkEvenMoreDifferent(win, colours, win.getMouse())
+        circlePatch(win, colours, win.getMouse())
     win.getMouse()
 
 
 main()
+
+# IMPROVEMENTS FROM SPEAKING TO MANI
+# use literals in the code rather than a var where there is no chance of changing
+# refactor little circles out of the main function for circlePatch
+# better iteration of for loops
+# better var names
