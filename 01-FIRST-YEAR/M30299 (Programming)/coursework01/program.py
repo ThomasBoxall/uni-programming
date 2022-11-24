@@ -54,78 +54,87 @@ def circlefromTL(win, tlPoint, radius, colour):
     circle(win, centre, radius, colour)
 
 # DRAW SINGLE PATCH FUNCTIONS
-def circlePatch(win, colours, tl):
+def drawCirclePatch(win, colour, tl):
+    """Draws single square then calls drawFourSmallCircles() to draw alternating colour circles in that rectangle"""
     patchSize = 100
     increment = 20
     altFlag = True
     for y in range(int(tl.getY()), int(tl.getY())+patchSize, increment):
         for x in range(int(tl.getX()), int(tl.getX())+patchSize, increment):
             currentTopLeft = Point(x, y)
-            innerIncrement = 10
-            innerPatchSize = 20
-            radius = 5
             if altFlag:
-                rectangle(win, currentTopLeft, brPoint(currentTopLeft, increment, increment), colours[0])
+                rectangle(win, currentTopLeft, brPoint(currentTopLeft, increment, increment), colour)
             else:
-                rectangle(win, currentTopLeft, brPoint(currentTopLeft, increment, increment), colours[1])
-            for i in range(int(currentTopLeft.getY()), int(currentTopLeft.getY()+innerPatchSize), innerIncrement):
-                for j in range(int(currentTopLeft.getX()), int(currentTopLeft.getX()+innerPatchSize), innerIncrement):
-                    innerCurrentTopLeft = Point(j, i)
-                    if altFlag:
-                        circlefromTL(win, innerCurrentTopLeft, radius, colours[1])
-                    else:
-                        circlefromTL(win, innerCurrentTopLeft, radius, colours[0])                        
+                rectangle(win, currentTopLeft, brPoint(currentTopLeft, increment, increment), "white")
+
+            drawFourSmallCircles(win, colour, currentTopLeft, altFlag)
             altFlag = not altFlag
 
-def linePatch(win, colours, tl):
-    patchSize = 100
-    increment = 10
-    for y in range(int(tl.getY()), int(tl.getY())+patchSize, increment):
-        drawOne = True
-        for x in range(int(tl.getY()), int(tl.getY())+patchSize, increment):
-            # startOne = Point(x, tl.getY())
-            # startTwo = Point(tl.getX(), y)
-            # endOne = Point(x+increment, y)
-            # endTwo = Point(x, y+ increment)
-            startOne = Point(x, tl.getY())
-            startTwo = Point(tl.getX(), y)
-            endOne = Point(tl.getX()+patchSize, y+increment)
-            endTwo = Point(x, y+ increment)
-            line(win, startOne, endOne, colours[0])
-            #line(win, startTwo, endTwo, colours[0])
-            win.getMouse()
+def drawFourSmallCircles(win, colour, tl, altFlag):
+    """Draws four little circles in a 20x20 space, based from TopLeft (tl) point of specified colour"""
+    # all circles have radius 5
+    for y in range(int(tl.getY()), int(tl.getY()+20), 10):
+        for x in range(int(tl.getX()), int(tl.getX()+20), 10):
+            currentTopLeft = Point(x, y)
+            if altFlag:
+                circlefromTL(win, currentTopLeft, 5, "white")
+            else:
+                circlefromTL(win, currentTopLeft, 5, colour)
 
-def drawLinePatchDifferent(win, colours, tl):
-    patchSize = 100
-    increment = 10
-    for i in range(1,11,1):
-        startOne = Point(int(tl.getX())*i, tl.getY())
-        endOne = Point(tl.getX()+patchSize, tl.getY()*i+increment)
-        line(win, startOne, endOne, colours[0])
-        startTwo = Point(tl.getX(), int(tl.getY())*i)
-        endTwo = Point(tl.getX()*i+increment, tl.getY()+patchSize)
-        line(win, startTwo, endTwo, colours[0])
-        win.getMouse()
 
-def drawLinePatchworkEvenMoreDifferent(win, colours, tl):
-    patchSize = 100
-    # increment = 10
-    for i in range(0, 100,10):
-        startOne = Point(i + tl.getX(), tl.getY())
-        endOne = Point(tl.getX()+patchSize, i + tl.getY() + 10)
-        line(win, startOne, endOne, colours[0])
+def drawLinePatch(win, colour, tl):
+    """Draw a single 'line' patch with TopLeft point tl"""
+    # we add 100 as this moves to the other side of the patch
+    # we add 10 as this is the gap between the lines
+    for offset in range(0, 100,10):
+        # define start and end points for line separately to make call to line() method simpler
+        startOne = Point(offset + tl.getX(), tl.getY())
+        endOne = Point(tl.getX()+100, offset + tl.getY() + 10)
+        line(win, startOne, endOne, colour)
 
-        startTwo = Point(tl.getX(), tl.getY()+(i))
-        endTwo = Point(i + tl.getX() + 10, tl.getY()+patchSize)
-        line(win, startTwo, endTwo, colours[0])
+        startTwo = Point(tl.getX(), tl.getY()+offset)
+        endTwo = Point(offset + tl.getX() + 10, tl.getY()+100)
+        line(win, startTwo, endTwo, colour)
+
+def drawPlainPatch(win, colour, tl):
+    """Draw a plain patch of colours[0]"""
+    rectangle(win, tl, brPoint(tl, 100, 100), colour)
+
+
+def populateWindow(win, colours, dimension):
+    for y in range(0,dimension,100):
+        for x in range(0,dimension,100):
+            topLeft = Point(x,y)
+            if x >= 100 and y >= 100 and x<dimension-100 and y<dimension-100:
+                #we actually need to draw a patch now
+                if x == y or x+y == dimension - 100:
+                    drawLinePatch(win, getColours(colours, topLeft, dimension), topLeft)
+                else:
+                    drawCirclePatch(win, getColours(colours, topLeft, dimension), topLeft)
+            else:
+                drawPlainPatch(win, getColours(colours, topLeft, dimension), topLeft)
+
+def getColours(colours, tl, dimension):
+    x = tl.getX()
+    y = tl.getY()
+    if x == y or x+y == dimension - 100:
+        return colours[0]
+    elif x>y and y+x < dimension:
+        return colours[1]
+    elif x>y and x+y >= dimension:
+        return colours[2]
+    elif x<y and x+y >= dimension:
+        return colours[1]
+    else:
+        return colours[2]
 
 
 def main():
-    win = GraphWin("", 800, 800)
-    colours = ["red", "white"]
+    dimension = 500
+    win = GraphWin("", dimension, dimension)
+    colours = ["blue", "orange", "red"]
     #drawLinePatchworkEvenMoreDifferent(win, colours, Point(10,10))
-    for i in range(0,4,1):
-        circlePatch(win, colours, win.getMouse())
+    populateWindow(win, colours, dimension)
     win.getMouse()
 
 
