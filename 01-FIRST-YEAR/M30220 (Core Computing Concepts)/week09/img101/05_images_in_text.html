@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Images in text</title>
+
+<style>
+
+    body, #crest {
+      text-align: justify;
+      width: 70vw;
+      margin: auto;
+    }
+
+    #crest {
+      /* transform: scaleY(-1); */
+    }
+
+    p {
+      line-height: 2em;
+      margin-bottom: 2em;
+    }
+
+    .unicrest {
+        height: 2em;
+        /* border: 1px  solid black; */
+        /* vertical-align: middle; */
+    }
+
+    .unicrest:nth-of-type(4n+1) {
+      filter: hue-rotate(90deg);
+    }
+    .unicrest:nth-of-type(4n+2) {
+      filter: hue-rotate(180deg);
+    }
+    .unicrest:nth-of-type(4n+3) {
+      filter: hue-rotate(270deg);
+    }
+
+    img {
+      /* transform: scaleY(-1); */
+    }
+
+
+</style>
+
+<h1><code>05_images_in_text.html</code></h1>
+
+<img
+  id="crest"
+  src="i/uop/crest.png"
+  alt="The university crest.">
+
+<p id="#explain">The University of Portsmouth Crest (<img src="i/uop/crest.png" class="unicrest" alt="University of Portsmouth Crest">) has been through several iterations and exists alongside the logo for use in more formal circumstances.
+
+<p>The crest appears several times in this page, in two different sizes.  An ID selector (<code>#crest</code>) is used to set the size and layout of the first crest.  Subsequent crests are styled using a class selector (<code>.unicrest</code>).
+
+<p>The crest colour can event be changed by use of a filter, all using the same image, for example: <img src="i/uop/crest.png" class="unicrest" alt="UoP Crest"><img src="i/uop/crest.png" class="unicrest" alt="UoP Crest"><img src="i/uop/crest.png" class="unicrest" alt="UoP Crest"></p>
+
+<p>NB: Styling <code>img</code> directly would affect all images including the crest at the top of the page, so in this case we have avoided that.  Often, styling all <code>img</code> elements is not a useful approach.
+
+<p>Adjust the <code>.unicrest</code> class selector so that the height of the image is <code>2em</code>.  Observe that the images are now a similar size to the content they are embedded in.  The <code>line-height</code> for paragraphs is also <code>2em</code>.
+
+<p>The <code>.unicrest</code> class selector has two other commented-out properties.  <code>border</code> is useful to help you see what's happening.  <code>vertical-align</code> can be experimented with.
+
+<p>What do you expect to happen if another six crest images are added to this paragraph?
+  <img src="i/uop/crest.png" class="unicrest ending" alt="UoP Crest">
+  <img src="i/uop/crest.png" class="unicrest ending" alt="UoP Crest">
+
+<p>Finally notice that there are two rules that include a transform statement.  Experiment with these to see why happens.  If both rules are uncommented does the double transform cancel itself out?  Why do you think this happens?

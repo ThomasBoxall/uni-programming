@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Float</title>
+
+<style>
+  body {
+    margin: 0;
+  }
+
+  p, h1 {
+    padding: 1rem;
+    margin-left: 1rem;
+  }
+
+  ol, li {
+    padding: 0rem 1rem 1rem 1rem;
+    margin-left: 1rem;
+  }
+
+  .teapot {
+    float: left;
+    float: right;
+    vertical-align: middle;
+    padding-left: 4em;
+  }
+
+  article {
+    clear: both;
+  }
+
+</style>
+
+<h1><code>06_floating.html</code></h1>
+
+<p>
+  <img
+     src="i/teapot.png"
+     class="teapot"
+     alt="A picture of a tall creamy white porcelain teapot.">
+  Making a pot of tea is a splendid thing. There is
+  scientific evidence that drinking tea can reduce blood pressure and increase wellbeing.
+  Some people drink a lot of tea, others prefer coffee
+  (and they are wrong to make this choice, but we must
+  allow them their folly).
+</p>
+
+<article>
+
+  <p>Images can be <code>float</code><em>ed</em> to the <code>left</code> or <code>right</code> of other elements.</p>
+  <p>Inline content such as text will flow around the rectangular outline of the image.</p>
+
+  <h1>Experiment</h1>
+
+  <ol>
+    <li>Try adding <code>float: right;</code> to the teapot class.</li>
+    <li>Observe that the rest of the article is also reformatted.  Add <code>clear: both</code> to the <code>article</code> to ensure that doesn't happen</li>
+    <li>Try adding <code>padding-left: 4em;</code> to the teapot class so that the text stays further away.</li>
+    <li>Notice the image is halfway through the paragraph. What do you think will happen if you move it to the start of
+      the paragraph, after the p tag, but before the text?</li>
+  </ol>
+
+  <p>It is common to see <code>float</code> used in <em>older</em> examples of how to layout a page.  It is no longer considered best practice because the <code>flex</code> layout model achieves the same with more predictable and controllable results.</p>
+
+</article>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+t<title>srcset+css</title>
+
+<style>
+    body {
+        margin: 0;
+    }
+
+    main {
+        max-width: 60em;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+    }
+
+    h1 {
+        padding: 2rem;
+    }
+
+    p {
+        padding: 0 1rem 1rem 1rem;
+    }
+
+    img {
+        align-self: center;
+        flex: 1 0 auto;
+    }
+
+    section {
+        background: lightgreen;
+    }
+
+    @media (min-width: 600px) {
+        main {
+            flex-direction: row;
+        }
+    }
+
+    .pix {
+        font-weight: bold;
+        color: red;
+    }
+</style>
+
+<h1><code>10_srcset_with_css.html</code></h1>
+
+<h1>Adding CSS</h1>
+
+<main>
+
+    <img
+    src="i/logo.png"
+    alt="This image has a srcset that features pixel density."
+    srcset="
+        i/elmer/400x400.png 1x,
+        i/elmer/800x800.png 2x,
+        i/elmer/1600x1600.png 3x"
+        >
+
+    <section>
+        <p>It is, of course possible to combine images that use <code>srcset</code> with CSS to adjust the way they are displayed in the browser.</p>
+        <p>In this example three similar images are provided and it's up to the browser to choose which one, depending on its capabilities.</p>
+        <p>The default styling for this page assumes a narrow 'mobile' layout.  The CSS specifies special behaviour as the page widens above 600 pixels wide (current width is <span class=pix></span> pixels).  Notice that in these circumstances, the image does not change - only the way it is formatted does.</p>
+        <p>Notice that whilst the layout changes, the image does not.  It is selected by the browser based on pixel density once, and not reloaded or changed.</p>
+        <p>Use the DPR selection tool to change pixel density and reload the page.</p>
+    </section>
+</main>
+
+
+
+<script>
+
+        window.addEventListener("resize", doPix);
+
+        function doPix() {
+            const pixs = document.querySelectorAll(".pix");
+            for (const pix of pixs) {
+                pix.textContent = document.documentElement.clientWidth
+            }
+        }
+
+        doPix();
+
+    </script>

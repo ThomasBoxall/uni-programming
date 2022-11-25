@@ -128,20 +128,60 @@ def getColours(colours, tl, dimension):
     else:
         return colours[2]
 
+def getUserInput():
+    acceptableColours = ["red", "green", "blue", "purple", "orange", "cyan"]
+    acceptabeleSizes = ["5", "7"] # these are strings so we can validate without causing casting errors. They get casted in the validateInt function
+    
+    inputValid = False
+    while inputValid == False:
+        inputValid = True
+        
+
+        colours = []
+        for x in range(0,3):
+            colourInp = input("Please enter a colour: ").lower()
+            if not validateString(acceptableColours, colourInp):
+                inputValid = False
+            colours.append(colourInp)
+        size = input("Enter size: ")
+        # validate number input
+        sizeValid, sizeInt = validateInt(acceptabeleSizes, size)
+        if not sizeValid:
+            inputValid = False
+        if not inputValid:
+            print("One or more inputs you entered is invalid. Please re-enter them.")
+        else:
+            print("Inputs valid, generating pattern.")
+        
+    return colours, sizeInt
+
+
+def validateString(validOptions, toValidate):
+    foundValid = False
+    for each in validOptions:
+        if each == toValidate:
+            foundValid = True
+    return foundValid
+
+def validateInt(validOptions, toValidate):
+    foundValid = False
+    intToValidate = 0
+    for each in validOptions:
+        if each == toValidate:
+            foundValid = True
+            intToValidate = int(toValidate)
+    return foundValid, intToValidate
+
+
+
 
 def main():
-    dimension = 500
-    win = GraphWin("", dimension, dimension)
-    colours = ["blue", "orange", "red"]
-    #drawLinePatchworkEvenMoreDifferent(win, colours, Point(10,10))
-    populateWindow(win, colours, dimension)
-    win.getMouse()
+    colours, size = getUserInput()
+    size = size * 100
+
+    win = GraphWin("2108121", size, size)
+    populateWindow(win, colours, size)
+    win.getMouse() # ask about this line and if it should exist or not?
 
 
 main()
-
-# IMPROVEMENTS FROM SPEAKING TO MANI
-# use literals in the code rather than a var where there is no chance of changing
-# refactor little circles out of the main function for circlePatch
-# better iteration of for loops
-# better var names

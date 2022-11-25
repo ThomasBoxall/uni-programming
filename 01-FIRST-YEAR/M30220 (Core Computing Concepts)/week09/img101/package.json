@@ -1,0 +1,13 @@
+{
+  "name": "webf1_media",
+  "version": "1.0.0",
+  "description": "Example code from WebF1 media lecture.",
+  "main": "src/index.html",
+  "author": "Rich Boakes <rjb@port.ac.uk> (http://boakes.org/)",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+      "start": "open src/index.html"
+  }
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSS IDs</title>
+
+<style>
+
+  body {
+    width: 100vw;
+    margin: 0;
+    padding:0;
+  }
+
+  img {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  #uni {
+    width: 60vw;
+    /* visibility: hidden; */
+    /* display: none; */
+  }
+
+  #crest {
+    width: 40vw;
+    /* opacity: 0.5; */
+  }
+
+  article {
+    padding: 1em;
+  }
+
+</style>
+
+<h1><code>04_size_css_byid.html</code></h1>
+
+<img
+  id="uni"
+  src="i/elmer/800x400.png"
+  alt="a colourful test image.">
+<img
+  id="crest"
+  src="i/uop/crest.png"
+  alt="The university crest.">
+
+<article>
+
+    <p>In this example each image is uniquely identified with an ID, so specific CSS selectors can be used to change individual images.
+
+    <h1>Experiment</h1>
+
+
+    <ul>
+        <li>Add <code>opacity: 0.5;</code> to the <code>#crest</code> rule.</li>
+        <li>Hide the <code>#uni</code> element completely by adding either <code>visibility: hidden;</code> or <code>display: none;</code></li>
+    </ul>
+
+    <p>Notice that there is a visual difference between <code>visibility: hidden;</code> or <code>display: none;</code></p>
+
+</article>

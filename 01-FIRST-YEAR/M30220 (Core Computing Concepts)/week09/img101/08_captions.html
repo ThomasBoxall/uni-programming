@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Images with Captions</title>
+
+<style>
+  figure {
+    width: 20em;
+    padding: 1rem;
+    border: thick black solid;
+
+    display: flex;
+    align-items:center;
+
+    border-radius: 0.125rem;
+  }
+
+  @media (orientation: portrait) {
+    figure {
+      flex-direction: column;
+      border-color: red;
+      width: 10em;
+      /* float: left; */
+    }
+  }
+
+  @media (orientation: landscape) {
+    figure {
+      flex-direction: row;
+      border-color: blue;
+    }
+  }
+
+</style>
+
+<h1><code>08_captions.html</code></h1>
+
+<figure>
+  <img
+    src="i/teapot.png"
+    class="teapot"
+    alt="A picture of a tall creamy white porcelain teapot.">
+
+  <figcaption>This is a teapot.  Specifically it is a rendered <a href="https://en.wikipedia.org/wiki/Utah_teapot">teapotahedron</a>.  The teapotahedron was created by Dr. Martin Newell because an object was required that could cast a shadow on itself. </figcaption>
+</figure>
+
+<ul>
+  <li>Observe the <code>figure</code> element which may contain an image <em>and</em> a <code>figcaption</code> element.</li>
+  <li>A <code>figure</code> can contain more than just <code>img</code> elements, for example, a table of data in an academic paper usually has a caption.</li>
+  <li><code>figure</code> elements may be styled with border, margins, colours, etc., like any other elements.</li>
+  <li>In this example we use the <code>flex</code> display property.  This allows us to change the orientation of the image and text with the <code>flex-direction</code> property.</li>
+  <li>The two <code>@media</code> queries provide different layouts when the page is wide (landscape orientation) or narrow (portrait orientation).</li>
+</ul>

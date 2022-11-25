@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Images as Links</title>
+
+<style>
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+nav>a {
+	transition: all 0.25s ease-in-out;
+	cursor: pointer;
+	flex: 0 0 auto;
+}
+
+nav>a>img {
+	height: 200px;
+}
+
+
+nav a:hover {
+	border-radius: 0.5rem;
+	transform: scale(0.95);
+	box-shadow: 0 0.5em 1em grey inset;
+}
+
+:target {
+	background: #009EE23F;
+	border: solid thin #621360;
+}
+
+section {
+	transition: all 0.25s ease-in-out;
+	border-radius: 0.5rem;
+	padding: 1em;
+}
+</style>
+
+<h1><code>03_links.html</code></h1>
+
+<h1>Making Links</h1>
+
+<p>To turn any image into a link, wrap it in an anchor element (i.e. <code>&lt;a href=""&gt;&lt;img src="" alt=""&gt;&lt;/a&gt;</code>)</p>
+
+<p>Below, each teapot is wrapped in a link to a <em>fragment</em> URL.  Each fragment URL addresses an element within this document.</p>
+
+<p>Notice that:</p>
+<ul>
+  <li>The fragment appears at the end of the URL in the address bar and changes with each click.</li>
+  <li>In the css a <code>:target</code> <em>pseudo selector</em> is used to color the background of the element with the same ID as the fragment.</li>
+  <li>If <em>necessary</em>, the document is scrolled until the target is visible.</li>
+  <li>The anchor that wraps the university logo has a longer URL that contains the full <code>http://port.ac.uk</code> address.  Anchors can point to parts of the current document, or link to any other document on the web.</li>
+</ul>
+
+<p>Look at each of the CSS rules.  Try to deduce:</p>
+<ul>
+  <li>The purpose of each selector.</li>
+  <li>What each property affects - if you're not sure, try commenting out each property to see what changes.</li>
+</ul>
+<p>NB: Many editors have a keyboard shortcut for toggling line comments (<code>ctrl+/</code> on Windows, <code>⌘+/</code> on Mac).</p>
+<nav>
+	<a href="#one">
+		<img
+			src="i/teapot.png"
+      alt="A picture of a tall creamy white porcelain teapot.">
+  </a>
+	<a href="#two">
+    <img
+      src="i/teapot.png"
+      alt="A second picture of a tall creamy white porcelain teapot.">
+  </a>
+  <a href="#three">
+    <img
+      src="i/teapot.png"
+      alt="Another identical picture of a tall creamy white porcelain teapot.">
+  </a>
+  <a
+    href="http://www.port.ac.uk"
+    target="_blank">
+      <img src="i/logo/linear.png" alt="University of Portsmouth">
+  </a>
+</nav>
+
+
+<article>
+	<section id="one">
+
+		<h1>The first teapot was clicked.</h1>
+
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi molestie massa justo. Etiam volutpat feugiat commodo. Mauris vel lobortis eros. Quisque porta leo libero, id scelerisque quam semper sit amet. Etiam eu dictum tellus. Etiam porttitor vehicula posuere. Morbi in laoreet purus. Proin fringilla viverra leo, sed dignissim elit rhoncus at. Donec ullamcorper nulla a massa molestie, et consequat velit sollicitudin. Donec non ipsum porta, iaculis leo a, imperdiet lectus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse sit amet nisi in leo placerat mollis. Sed et nulla sit amet ante placerat blandit tincidunt vitae mauris. Curabitur sit amet purus in tellus rutrum volutpat nec ac sem. Aenean convallis blandit magna, nec congue dolor mattis sed.
+	</section>
+
+	<section id="two">
+
+		<h1>The second teapot was clicked.</h1>
+
+		<p>Donec viverra erat ac ipsum bibendum, ut dictum arcu ultrices. Quisque in dui id tellus porta hendrerit. Morbi porta odio mauris, non tempus orci interdum id. Suspendisse potenti. Integer vel molestie felis. Aliquam commodo lacinia tempor. Sed volutpat tortor sed condimentum dapibus. Aenean euismod libero nunc, sed sagittis orci hendrerit ac. Donec ut felis ex. Phasellus a augue vel mauris rhoncus commodo rhoncus ut nisi. Suspendisse potenti. Donec consectetur dignissim dolor, ac dignissim nulla tincidunt ut. Integer tempor erat in ante placerat, id egestas lacus ultricies. Phasellus dictum arcu vel odio rhoncus, id convallis quam lacinia. Praesent sit amet ipsum lacus. In sit amet pellentesque sapien.</p>
+
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi molestie massa justo. Etiam volutpat feugiat commodo. Mauris vel lobortis eros. Quisque porta leo libero, id scelerisque quam semper sit amet. Etiam eu dictum tellus. Etiam porttitor vehicula posuere. Morbi in laoreet purus. Proin fringilla viverra leo, sed dignissim elit rhoncus at. Donec ullamcorper nulla a massa molestie, et consequat velit sollicitudin. Donec non ipsum porta, iaculis leo a, imperdiet lectus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse sit amet nisi in leo placerat mollis. Sed et nulla sit amet ante placerat blandit tincidunt vitae mauris. Curabitur sit amet purus in tellus rutrum volutpat nec ac sem. Aenean convallis blandit magna, nec congue dolor mattis sed.</p>
+	</section>
+
+
+
+<section id="three">
+		<h1>The third teapot was clicked.</h1>
+
+
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi molestie massa justo. Etiam volutpat feugiat commodo. Mauris vel lobortis eros. Quisque porta leo libero, id scelerisque quam semper sit amet. Etiam eu dictum tellus. Etiam porttitor vehicula posuere. Morbi in laoreet purus. Proin fringilla viverra leo, sed dignissim elit rhoncus at. Donec ullamcorper nulla a massa molestie, et consequat velit sollicitudin. Donec non ipsum porta, iaculis leo a, imperdiet lectus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse sit amet nisi in leo placerat mollis. Sed et nulla sit amet ante placerat blandit tincidunt vitae mauris. Curabitur sit amet purus in tellus rutrum volutpat nec ac sem. Aenean convallis blandit magna, nec congue dolor mattis sed.
+		</section>
+</article>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Responsive Images using Picture</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        align-content: center;
+    }
+
+    h1 {
+        padding: 1rem;
+    }
+
+    p {
+        padding: 0 1rem 1rem 1rem;
+    }
+
+    img {
+        align-self: center;
+        width: 100%;
+        flex: 0 0 auto;
+    }
+
+    section {
+        flex: 1 1 auto;
+    }
+
+    @media (min-width: 800px) {
+        main {
+            flex-direction: row;
+            overflow: scroll;
+        }
+
+        img {
+            width: auto;
+            height: 100vh;
+        }
+    }
+
+    @media (min-width: 1600px) {
+        main {
+            flex-direction: row;
+        }
+        img {
+            width: 100vmin;
+            height: 100vmin;
+            max-height: 80vw;
+            max-width: 80vw;
+        }
+    }
+
+
+    .pix {
+        font-weight: bold;
+        color: red;
+    }
+</style>
+
+<h1><code>11_picture.html</code></h1>
+
+<main>
+
+    <picture>
+        <!-- On the biggest screens a large square image  -->
+        <source
+            media="(min-width: 1600px)"
+            srcset="
+                i/elmer/800x800.png 1x,
+                i/elmer/1600x1600.png 2x,
+                i/elmer/3200x3200.png 3x">
+        <!-- On smaller screens a sidebar-style image  -->
+        <source
+            media="(min-width: 800px)"
+            srcset="
+                i/elmer/200x800.png 1x,
+                i/elmer/400x1600.png 2x,
+                i/elmer/800x3200.png 3x">
+        <!-- Default is a wide masthead shape -->
+        <source
+            srcset="
+                i/elmer/800x200.png 1x,
+                i/elmer/1600x400.png 2x,
+                i/elmer/3200x800.png 3x">
+        <!-- fallback image (required)-->
+        <img
+            src="i/400x400.png"
+            alt="A very dynamic image.">
+    </picture>
+
+
+    <section>
+
+        <h1><code>Picture</code> &amp; <code>Source</code></h1>
+
+        <p>The <code>picture</code> element lets us use different images in different situations.  It contains multiple <code>source</code > elements, each of which defines a rule for when it is relevant and then specifies which image to use via its <code>srcset</code> attribute.</p>
+
+        <p>In this example three shapes of image are used.  By default a small-screen mobile devide is assumed, so a wide horizontal masthead-style image is displayed.  If the screen is larger than 800 pixels wide, a tall thin sidebar image replaces the original masthead.  The CSS selector in the <code>source</code> element is complemented by an <code>@media</code> query that changes the direction of the <code>flex</code> layout from column to row.</p>
+
+        <p>Currently the page is <span class=pix>0</span> pixels wide.</p>
+
+        <p>If the page grows in width beyond 1600 pixels wide, a third layout is introduced, where a very large square version of the image is selected.</p>
+
+        <p>Note that in all cases, three different sizes of image are provided to allow for screens with different pixel densities.</p>
+
+</section>
+</main>
+
+
+
+<script>
+
+    window.addEventListener("resize", doPix);
+
+    function doPix() {
+        const pixs = document.querySelectorAll(".pix");
+        for (const pix of pixs) {
+            pix.textContent = document.documentElement.clientWidth
+        }
+    }
+
+    doPix();
+
+</script>

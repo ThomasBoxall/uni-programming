@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Responsive Images using Picture</title>
+
+<style>
+
+  body {
+    margin: 0;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    background: #222;
+  }
+
+  code {
+    font-size: 120%;
+  }
+
+  img {
+    padding: 0;
+    bottom: 0;
+    height: 50vw;
+    margin: 0 auto;
+    display: block;
+  }
+
+  picture {
+    background: #FFBB33;
+  }
+
+  p, h1 {
+    padding: 1rem 2rem;
+  }
+
+  h1 {
+    color: white;
+  }
+
+  ul, li {
+    margin-left: 1rem;
+    max-width: 20rem;
+    list-style-type: none;
+    transition: all 1s ease-in-out;
+    padding: 0.25rem;
+  }
+
+  .pix,
+  .active {
+    transition: all 0.2s ease-in-out;
+    color: black;
+    background: #FFBB33;
+    border-radius: 0.25rem;
+  }
+
+  .active:after {
+    content: " (current) ";
+  }
+
+  article {
+    background: #222;
+    color: #FFF;
+
+  }
+
+</style>
+
+<h1><code>12_picture_fish.html</code></h1>
+
+<h1>I caught a fish and it was <em>this</em> big:</h1>
+
+<picture>
+  <source media="(min-width: 1000px)" srcset="i/fish/thisbig.jpg 1x, i/fish/thisbig.png 2x, i/fish/thisbig_blue.png 3x">
+  <source media="(min-width: 800px)" srcset="i/fish/thatbig.jpg 1x, i/fish/thatbig.png 2x, i/fish/thatbig_blue.png 3x">
+  <source media="(min-width: 600px)" srcset="i/fish/sobig.jpg 1x, i/fish/sobig.png 2x, i/fish/sobig_blue.png 3x">
+  <source srcset="i/fish/tiddler.jpg 1x, i/fish/tiddler.png 2x, i/fish/tiddler_blue.png 3x">
+  <img
+    src="i/oldbrowser.png"
+    alt="This image contains text advising you that your browser is too old." >
+</picture>
+
+<article>
+
+  <p>The <code>picture</code> element can be used to create responsive images which choose an appropriate image based on the size of the containing area.  The bitmap that gets chosen by the browser depends on the size of the viewport.</p>
+
+
+  <p>Currently the viewport is <span class=pix>0</span> pixels wide as you adjust the size of the window this figure will change.  The image will also change, but that is all managed by the browser thanks to the <code>picture</code> element.
+
+
+  <p>The vieport sizes defined in the <code>picture</code> element are...</p>
+  <ul>
+    <li data-size=1>0 to 599</li>
+    <li data-size=2>600 to 799</li>
+    <li data-size=3>800 to 999</li>
+    <li data-size=4>above 1000</li>
+  </ul>
+
+  <p>NB: The <code>img</code> element is <em>required</em>.  The picture element provides the <code>img</code> element with a rich context and new mechanisms for selecting source images that are presented therein.  This is why when we want to style the image, we can still style <code>img</code> directly (rather than the <code>picture</code> element).</p>
+
+</article>
+
+
+<script>
+  const pixs = document.querySelectorAll(".pix");
+  const sizes = document.querySelectorAll("[data-size]");
+
+  window.addEventListener("resize", doPix);
+
+  function doPix() {
+    const w = document.documentElement.clientWidth;
+
+    for (const pix of pixs) {
+      pix.textContent = w;
+    }
+
+    for (const elem of sizes) {
+      elem.classList.remove("active");
+    }
+
+    let selector;
+    switch (true) {
+      case w < 600: selector = 1; break;
+      case w < 800: selector = 2; break;
+      case w < 1000: selector = 3; break;
+      default: selector = 4; break;
+    }
+
+    const current = document.querySelector(`[data-size='${selector}'`);
+
+    if (current) {
+      current.classList.add("active");
+    }
+  }
+
+  doPix();
+</script>

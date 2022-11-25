@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Video</title>
+
+<h1><code>16_video.html</code></h1>
+
+<h1>Video with CSS styling</h1>
+
+<p>You can style video as any other image.  The tumbling video example here is a little extreme, but it gets the point across.</p>
+
+
+<video
+  id=v2
+  autoplay
+  muted
+  loop>
+  <source src="i/vid/museum.ogv" type='video/ogv'></source>
+  <source src="i/vid/museum.mp4" type='video/mp4'></source>
+  <source src="i/vid/museum.mov" type='video/quicktime'></source>
+  <p>Sorry, your browser doesn't do video.</p>
+</video>
+
+<style>
+
+  body {
+    perspective: 50vmin;
+  }
+
+  #v2 {
+    border-radius: 100%;
+    width: 100%;
+    animation: spin 400s infinite linear;
+  }
+
+  @keyframes spin {
+    0% { transform: rotateZ(0deg) rotateY(0deg) rotateX(0deg) translateZ(-5vmin) scale(0.5); }
+    100% { transform: rotateZ(1800deg) rotateY(3240deg) rotateX(3960deg) translateZ(-5vmin)  scale(0.5); }
+  }
+</style>

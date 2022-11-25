@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Responsive Images using Picture</title>
+
+<style>
+  img {
+    width: 254px;
+  }
+</style>
+
+<h1><code>13_picture_others.html</code></h1>
+
+<picture>
+  <source
+    type="image/webp"
+    srcset="i/uop/logo.webp">
+  <source
+    type="image/svg+xml"
+    srcset="i/uop/logo.svg">
+  <source
+    type="image/png"
+    srcset="i/uop/logo.png">
+  <img
+    src="i/uop/logo.gif"
+    alt="University of Portsmouth Logo">
+</picture>
+
+<p>When using source, we can provide alternative images so that browsers with different capabilities can show their preferred image format.</p>

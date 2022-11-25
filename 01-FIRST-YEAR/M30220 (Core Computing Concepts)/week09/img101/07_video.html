@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Video</title>
+
+<h1><code>07_video.html</code></h1>
+
+<h1>Video</h1>
+
+<p>Adding video to pages is achieved with the video element.</p>
+
+<p>Similar to the picture element video enables different sources to be defined.  It's also possible to specify types - this is important because browser vendors are choosy (for legal reasons) about which formats they support, so it is necessary to convert video to different formats and allow the user's browser to choose.</p>
+
+<video
+  controls=true
+  muted
+  style="width: 100%"
+  id="v1">
+  <source src="i/vid/museum.ogv" type='video/ogv'></source>
+  <source src="i/vid/museum.mp4" type='video/mp4'></source>
+  <source src="i/vid/museum.mov" type='video/quicktime'></source>
+  <p>Sorry, your browser doesn't do video.</p>
+</video>

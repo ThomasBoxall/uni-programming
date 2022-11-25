@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSS Shapes</title>
+
+<style>
+  body {
+    margin: 0;
+  }
+
+  p, h1 {
+    padding: 1rem;
+    margin-left: 1rem;
+    text-align: justify;
+  }
+
+  ol, li {
+    padding: 0rem 1rem 1rem 1rem;
+    margin-left: 1rem;
+  }
+
+  .firstExample {
+    float: left;
+    shape-outside: circle(50%);
+    border-radius: 0 25vmin 25vmin 0;
+    width: 50vmin;
+    margin-right: 2em;
+  }
+
+  .teapotPolygon {
+    float: left;
+    vertical-align: middle;
+    shape-outside: polygon(0 22%, 44% 6%, 29% 21%, 63% 5%, 65% 18%, 79% 27%, 96% 31%, 96% 57%, 84% 70%, 78% 88%, 62% 98%, 41% 98%, 24% 82%);
+    width: 50vmin;
+    clear: both;
+  }
+
+  .thresholdExample {
+    float: right;
+    width: 50vmin;
+    padding-right: 4em;
+    shape-outside: url("i/teapot.png");
+    shape-image-threshold: 0.1;
+    shape-margin: 1rem;
+  }
+
+  header {
+    float: right;
+    background: pink;
+    display: block;
+    width: 100vmin;
+    height:
+    margin-right: -50vmin;
+    transform: rotateZ(45deg);
+    shape-outside: ellipse(100% 20%);
+  }
+
+  header img {
+    margin: 0 auto;
+    width: 25vmin;
+  }
+
+</style>
+
+<h1><code>15_css_shapes.html</code></h1>
+
+<article>
+
+  <h1>CSS Shapes</h1>
+
+  <p>CSS shapes allow text to flow around non-rectangular blocks.</p>
+
+  <p>CSS Shapes are useful when an image is not square (or if you don't want a square image to look square).  There are basic shapes (such as <code>circle</code>) that can be applied, complex polygons, or even shaped transparency threshold masks.</p>
+
+  <img
+    class="firstExample"
+    alt="A square image that has been shaped a bit like a capital D."
+    src="i/elmer/ohyeah.png">
+
+  <p>In this first example, a square image is made to look like a "D" by giving it two rounded corners (via <code>border-radius</code> in the CSS).  Text flows smoothly around it thanks to the <code>shape-outside</code> property which is set to be a circle.</p>
+
+  <p>The size of the image is set to be 50% of the width or height of the viewport (whichever is the smaller) via <code>vmin</code>.</p>
+
+  <p>The second example uses a polygon to define the shape of the edge of the teapot - this is quite a lot of work but very accurate on an iregular shape.
+
+  <p>The third example takes advantage of the <code>shape-image-threshold</code> property.  When we first created this example it worked perfectly on Firefox but Chrome wasnt't happy with it.  A useful tool for checking the support for features is <a href="https://caniuse.com/#feat=css-shapes">CanIUse.com</a>.  Remember, when writing for the web, it's best to assume something will not work, and create a site that works well by default, and which is then progressively enhanced as the viewer's browser supports different feaures.</p>
+
+  <p>Happily all major browsers (Chrome, Firefox, Safari & Edge) now support this feature.</p>
+
+  <p>The remainder of the text on this page is lorem ipsum so there is enough text to show flow ... dolor sit amet consectetur, adipisicing elit. Fugit a aperiam nobis, vel officiis nihil impedit nulla amet porro velit ipsum reprehenderit quo, delectus veniam excepturi voluptas commodi hic et similique iure laborum molestias nam quam. Totam amet, quibusdam eius a hic veritatis! Sit laboriosam harum sapiente maxime consectetur ea et inventore officia ducimus nesciunt, eius fugiat provident rerum similique, numquam distinctio amet. Unde ipsam possimus tenetur? Dolores, illum, ipsa animi quia ex cupiditate veniam eligendi sunt asperiores laboriosam saepe est. Ad labore consequatur maxime maiores recusandae, optio hic quaerat aspernatur ex nulla laboriosam harum tenetur impedit, quidem sapiente sit.</p>
+
+  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit a aperiam nobis, vel officiis nihil impedit nulla amet porro velit ipsum reprehenderit quo, delectus veniam excepturi voluptas commodi hic et similique iure laborum molestias nam quam. Totam amet, quibusdam eius a hic veritatis! Sit laboriosam harum sapiente maxime consectetur ea et inventore officia ducimus nesciunt, eius fugiat provident rerum similique, numquam distinctio amet. Unde ipsam possimus tenetur? Dolores, illum, ipsa animi quia ex cupiditate veniam eligendi sunt asperiores laboriosam saepe est. Ad labore consequatur maxime maiores recusandae, optio hic quaerat aspernatur ex nulla laboriosam harum tenetur impedit, quidem sapiente sit.</p>
+
+  <img
+    class="teapotPolygon"
+    alt="A picture of a tall creamy white porcelain teapot."
+    src="i/teapot.png">
+
+
+  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit a aperiam nobis, vel officiis nihil impedit nulla amet porro velit ipsum reprehenderit quo, delectus veniam excepturi voluptas commodi hic et similique iure laborum molestias nam quam. Totam amet, quibusdam eius a hic veritatis! Sit laboriosam harum sapiente maxime consectetur ea et inventore officia ducimus nesciunt, eius fugiat provident rerum similique, numquam distinctio amet. Unde ipsam possimus tenetur? Dolores, illum, ipsa animi quia ex cupiditate veniam eligendi sunt asperiores laboriosam saepe est. Ad labore consequatur maxime maiores recusandae, optio hic quaerat aspernatur ex nulla laboriosam harum tenetur impedit, quidem sapiente sit.</p>
+
+  <img
+    class="thresholdExample"
+    alt="A picture of a tall creamy white porcelain teapot."
+    src="i/teapot.png">
+
+  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit a aperiam nobis, vel officiis nihil impedit nulla amet porro velit ipsum reprehenderit quo, delectus veniam excepturi voluptas commodi hic et similique iure laborum molestias nam quam. Totam amet, quibusdam eius a hic veritatis! Sit laboriosam harum sapiente maxime consectetur ea et inventore officia ducimus nesciunt, eius fugiat provident rerum similique, numquam distinctio amet. Unde ipsam possimus tenetur? Dolores, illum, ipsa animi quia ex cupiditate veniam eligendi sunt asperiores laboriosam saepe est. Ad labore consequatur maxime maiores recusandae, optio hic quaerat aspernatur ex nulla laboriosam harum tenetur impedit, quidem sapiente sit.</p>
+
+
+  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit a aperiam nobis, vel officiis nihil impedit nulla amet porro velit ipsum reprehenderit quo, delectus veniam excepturi voluptas commodi hic et similique iure laborum molestias nam quam. Totam amet, quibusdam eius a hic veritatis! Sit laboriosam harum sapiente maxime consectetur ea et inventore officia ducimus nesciunt, eius fugiat provident rerum similique, numquam distinctio amet. Unde ipsam possimus tenetur? Dolores, illum, ipsa animi quia ex cupiditate veniam eligendi sunt asperiores laboriosam saepe est. Ad labore consequatur maxime maiores recusandae, optio hic quaerat aspernatur ex nulla laboriosam harum tenetur impedit, quidem sapiente sit.</p>
+
+
+  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit a aperiam nobis, vel officiis nihil impedit nulla amet porro velit ipsum reprehenderit quo, delectus veniam excepturi voluptas commodi hic et similique iure laborum molestias nam quam. Totam amet, quibusdam eius a hic veritatis! Sit laboriosam harum sapiente maxime consectetur ea et inventore officia ducimus nesciunt, eius fugiat provident rerum similique, numquam distinctio amet. Unde ipsam possimus tenetur? Dolores, illum, ipsa animi quia ex cupiditate veniam eligendi sunt asperiores laboriosam saepe est. Ad ok so it's not all lorem ipsum.  Lorem easter eggs are good to find labore consequatur maxime maiores recusandae, optio hic quaerat aspernatur ex nulla laboriosam harum tenetur impedit, quidem sapiente sit.</p>
+
+</article>

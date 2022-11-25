@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>srcset</title>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  h1, p, img {
+    margin: 2rem;
+  }
+  img {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  img[srcset] {
+  }
+
+</style>
+
+<h1><code>09_srcset.html</code></h1>
+
+<main>
+
+  <h1>Using <code>src</code></h1>
+
+  <p>In the original specification of the <code>img</code> element we could choose <em>one</em> image to be shown shown (by using the <code>src</code> attribute).  No matter how wide or narrow our browser viewport, the same <em>one</em> image is shown.
+
+  <img id="default"
+    src="i/elmer/400x400.png"
+    alt="This is Elmer, the patchwork image - it is not at all 'responsive'.">
+
+  <p>The viewport is currently <span class=pix></span> pixels wide - if you resize the browser window (or if you're on a phone if you switch between landscape and portrait orientation, you should see this number change, but) the image will not change.</p>
+
+  <h1>Using <code>srcset</code></h1>
+
+  <p><a href=http://w3c.github.io/html/semantics-embedded-content.html#element-attrdef-img-srcset><code>srcset</code></a> is an optional attribute that allows multiple comma-separated image URLs to be specified.  It's up to the browser to select which one.</p>
+
+  <img
+    src="i/logo.png"
+    alt="This image has a srcset."
+    srcset="
+      i/elmer/1200x400.png,
+      i/elmer/600x400.png,
+      i/elmer/400x400.png,
+      i/elmer/1600x400.png,
+      i/elmer/3200x400.png"
+      >
+
+  <p>When using <code>srcset</code> the browser decides which image to download.  It is likely (at the time of writing) that your browser will select the first image to display, so on its own the basic <code>srcset</code> attribute doesn't give us anything extra.</p>
+
+  <h1>Width Hints</h1>
+
+  <p>In addition to the image URL we can add a <code>width</code> hint which comes after the URL.  The browser will use the size of the space in which the image will go when selecting which image to load.  So on a phone with limited pixels, a small image may be shown, whereas on a huge desktop the massive 3200x400 image may be chosen.</p>
+
+  <p>NB: The <code>src</code> attribute is always required (you will find it in all the examples here) because it provides default fallback content.</p>
+
+  <p>Only one image is loaded initially.  If you start the page small and expand it, larger and larger images are loaded as necessary.  If you start the page large, the opposite may not be true.</p>
+
+  <img
+    src="i/logo.png"
+    alt="This image has a srcset with width hints."
+    srcset="
+    i/elmer/400x800.png 400w,
+    i/elmer/600x400.png 600w,
+    i/elmer/1200x400.png 1200w,
+    i/elmer/1600x400.png 1600w,
+    i/elmer/3200x400.png 3200w"
+    >
+
+  <p>Notice that as the page gets wider (currently <span class=pix></span> pixels) there may not be a direct correlation between the viewport width and the width of the image that is loaded.</p>
+
+  <p>Browsers that have cached a higher resolution version of an image may continute to use it, so to see this effect is may be necessary to use an 'incognito' window.</p>
+
+  <h1>Adding <code>sizes</code></h1>
+
+  <p>The <code>sizes</code> attribute is closely related to <code>srcset</code>.  It helps the browser decide which image to use when the browser is different widths.</p>
+
+  <p>If a <code>sizes</code> attribute is used there must be one entry for each url in the <code>srcset</code> attribute.</p>
+
+  <img
+  src="i/logo.png"
+  alt="This image has both a srcset and sizes attribute."
+  srcset="
+    i/elmer/400x400.png 400w,
+    i/elmer/600x400.png 600w,
+    i/elmer/1200x400.png 1200w,
+    i/elmer/1600x400.png 1600w,
+    i/elmer/3200x400.png 3200w"
+  sizes="
+    (max-width: 400px) 100vw,
+    (max-width: 600px) 80vw,
+    (max-width: 1200px) 60vw,
+    (max-width: 1600px) 40vw,
+    (max-width: 2000px) 20vw"
+    >
+
+  <p>There is a philosophical quandry here - which is that the 'sizes' attribute here muddies the waters of separating <em>form</em> and <em>content</em> - the same results can be achieved using CSS, and the fact that CSS selectors are being used in an attribute reinforces these philosophical concerns.  Furthermore, it's only possible to control the width of the image using <code>sizes</code>, so it may be useful only in limited situations.</p>
+
+
+  <h1>Pixel Density</h1>
+
+  <img
+    src="i/logo.png"
+    srcset="
+      i/elmer/400x400.png 1x,
+      i/elmer/800x800.png 2x,
+      i/elmer/1600x1600.png 3x"
+    alt="This image has a srcset that features pixel density.">
+
+  <p>Pixels are not all the same size - some screens have higher pixel-density than others.  The <code>srcset</code> attribute affords for coping with these situations by adding pixel density information to each URL.  The image displayed here will differ depending upon the pixel density of the device on which it is shown.</p>
+
+  <p>You can simulate differnt pixel densities in the device toolbar (look for DPR, short for Device Pixel Ratio).</p>
+
+  <img
+  src="i/dpr.png"
+  alt="The Device Pixel Ratio setting in Chrome 83.">
+
+</main>
+
+<script>
+
+  window.addEventListener("resize", doPix);
+
+  function doPix() {
+    const pixs = document.querySelectorAll(".pix");
+    for (const pix of pixs) {
+      pix.textContent = document.documentElement.clientWidth
+    }
+  }
+
+  doPix();
+
+</script>

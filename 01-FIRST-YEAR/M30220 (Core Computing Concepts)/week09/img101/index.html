@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Working with Images</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    main {
+        font-family: sans-serif;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+
+        display: grid;
+        grid-template-columns: 12em 1fr;
+        grid-template-rows: auto 1fr;
+        grid-template-areas: "title intro" "links stuff";
+    }
+
+    main>h1     { grid-area: title; }
+    main>header { grid-area: intro; }
+    main>nav    { grid-area: links; }
+    main>#f1    { grid-area: stuff; }
+
+    header, nav, h1 {
+         background: #009EE23F;
+    }
+
+    header, h1 {
+        padding: 1rem;
+    }
+
+
+    ul a {
+        width: 100%;
+        display: block;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+    }
+
+    ul {
+        display: contents;
+        list-style-type: none;
+    }
+
+    li {
+        display: contents;
+        width: 100%;
+    }
+
+    #f1 {
+        height: 100%;
+        width: 100%;
+        padding: 2em;
+    }
+
+    .active {
+        background: white;
+    }
+
+</style>
+
+<main>
+
+    <h1>Images</h1>
+
+    <header>
+        <p>Several examples of image-use within HTML pages, along with CSS tips that follow on from previous lecture/class examples.  You can <a href="https://github.com/portsoc/img101/archive/master.zip">download a zip</a> or clone the code from our <a href="https://github.com/portsoc/img101">GitHub repository</a>.</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href=00_intro.html>0. Intro</a></li>
+            <li><a href=01_img.html>1. Basic Images</a></li>
+            <li><a href=02_size_css.html>2. Sizing</a></li>
+            <li><a href=03_links.html>3. Links</a></li>
+            <li><a href=04_size_css_byid.html>4. ID styling</a></li>
+            <li><a href=05_images_in_text.html>5. Images in text</a></li>
+            <li><a href=06_floating.html>6. Floating</a></li>
+            <li><a href=07_video.html>7. Video</a></li>
+
+            <li><a href=08_captions.html>8. Figures &amp; Captions</a></li>
+            <li><a href=09_srcset.html>9. srcset &amp; sizes</a></li>
+            <li><a href=10_srcset_with_css.html>10. srcset with CSS</a></li>
+
+            <li><a href=11_picture.html>11. Picture &amp; Source</a></li>
+            <li><a href=12_picture_fish.html>12. Picture &amp; Source</a></li>
+            <li><a href=13_picture_others.html>13. Other Picture Types</a></li>
+            <li><a href=14_monochrome.html>14. Portrait &amp; Landscape</a></li>
+            <li><a href=15_css_shapes.html>15. CSS Shapes</a></li>
+
+            <li><a href=16_video.html>16. Video with CSS styling</a></li>
+        </ul>
+    </nav>
+
+    <iframe id=f1 src="" frameborder=0></iframe>
+
+</main>
+
+<script>
+
+    /*
+     * Prep element references
+     */
+    const links = document.querySelectorAll("nav a");
+    const f1 = document.querySelector("#f1");
+
+    /*
+     * Find all menu items and intercept the click
+     * so that links open in the iFrame.
+     */
+    for (const link of links) {
+        link.addEventListener("click", (evt) => {
+            if (!overrideKey) {
+                evt.preventDefault();
+                activate(evt.target)
+            }
+        });
+    }
+
+    activate(links[0]);
+
+
+    /*
+     * Allow for Ctrl-click or Cmd-click to
+     * work as normal and open the link in
+     * the background.
+     */
+    let overrideKey = false;
+
+    document.addEventListener("keyup", (e) => {
+        overrideKey = false;
+    });
+
+    document.addEventListener("keydown", (e) => {
+        overrideKey = e.ctrlKey || e.metaKey || e.altKey || e.shiftKey;
+    });
+
+
+    /**
+     * An element that si activated has the 'active'
+     * class added (which has a style associated with
+     * it).  At the same time all other activateable
+     * elements have their active class removed.
+     */
+    function activate(elem) {
+        f1.src = elem.href;
+        for (const l of links) {
+            l.classList.remove("active");
+        }
+        elem.classList.add("active");
+    }
+
+
+</script>
