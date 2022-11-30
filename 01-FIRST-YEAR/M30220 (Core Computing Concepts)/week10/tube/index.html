@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tube Map</title>
+    <style>
+        svg{
+            border: 1px dashed purple;
+            fill: none;
+            stroke-width: 2px;;
+        }
+        .dash{
+            stroke-dasharray: 4;;
+        }
+        .met{
+            stroke: #9B0056
+        }
+        .pic{
+            stroke: #003688;
+        }
+        .cent{
+            stroke: #E32017;
+        }
+        .dist{
+            stroke: #00782A;
+        }
+        .hc{
+            stroke: #F3A9BB;
+        }
+        .circ{
+            stroke: #FFD300;
+        }
+    </style>
+</head>
+<body>
+    <svg width="1000" height="1000">
+        <!-- Metropolitan Line -->
+        <polyline points="9,66 106,66 198,158" class="met" />
+        <polyline points="31,49 48,66" class="met" />
+        <polyline points="137,70 137,96" class="met"/>
+        <polyline points="24,123 120,123 156,158 276,158 393,272 502,272 544,313 608,313 608,326" class="met"/>
+        <!-- Piccadilly Line -->
+        <polyline points="24,126 120,126 136,142 137,380 141,385 356,385 395,349 469,349 504,313 504,250 592,161 592,57" class="pic" />
+        <polyline points="21,496 21,484 119,385 141,385" class="pic" />
+        <polyline points="30,475 30,490 35,496 50,496 56,490 56,448" class="pic" />
+        <!-- Central -->
+        <polyline points="87,106 87,221 208,345" class="cent"/>
+        <polyline points="120,345 350,345 375,322 485,322 501,335 541,335 582,297 682,297 690,302 706,302 800,208 800,97 842,54" class="cent" />
+        <polyline points="800,115, 849,115 849,175 800,175" class="cent" />
+        <!-- District -->
+        <polyline points="119,351 125,351 130,356 130,385 138,392 182,392 501,392 546,347 608,347 613,343 631,329 631,311 867,311 954,225" class="dist" />
+        <polyline points="113,460 181,392" class="dist" />
+        <polyline points="304,511 304,398 310,392" class="dist" />
+        <polyline points="310,392 304,386 304,365" class="dist dash" />
+        <polyline points="310,392 322,384 322,280 329,274 342,274" class="dist" />
+        <!-- Hammersmith & City -->
+        <polyline points="262,374 262,325 317,269 503,268 546,309 856,309" class="hc" />
+        <!-- Circle -->
+        <polyline points="264,374 264,324 317,271 503,270 545,311 605,311 611,318 611,341 606,346 547,346 500,390 330,390 324,384 325,281 330,277 342,277" class="circ" />
+
+    </svg>
+</body>
+</html>

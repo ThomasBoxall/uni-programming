@@ -37,7 +37,7 @@ def goForWalk(win, distance, numberWalks):
     for walkCount in range(0, numberWalks):   
         currentPos = centreCircle
         prevPos = centreCircle
-        counter.setText(str(walkCount)+"/"+str(numberWalks))
+        counter.setText(str(walkCount+1)+"/"+str(numberWalks))
         # print("loopy") 
         while distanceBetweenPoints(centreCircle, currentPos) < distance:
             #prevPos = currentPos
