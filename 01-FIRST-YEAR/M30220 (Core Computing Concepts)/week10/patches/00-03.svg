@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+
+<style>
+circle, rect{
+    fill: red;
+}
+</style>
+
+<defs>
+    <g id="circle">
+        <circle cx="10" cy="10" r="10"/>
+    </g>
+    <g id="blob">
+        <use href="#circle" x="0" y="0"/>
+        <use href="#circle" x="10" y="0"/>
+        <rect x="10" y="0" width="10" height="20" />
+    </g>
+    <g id="left">
+        <use href="#circle" x="0" y="0"/>
+        <use href="#blob" x="20" y="0" />
+        <use href="#circle" x="50" y="0"/>
+        <use href="#blob" x="70" y="0" />
+    </g>
+    <g id="right">
+        <use href="#blob" x="0" y="0" />
+        <use href="#circle" x="30" y="0"/>
+        <use href="#blob" x="50" y="0" />
+        <use href="#circle" x="80" y="0"/>
+    </g>
+
+</defs>
+<use href="#left" x="0" y="0" />
+<use href="#right" x="0" y="20" />
+<use href="#left" x="0" y="40" />
+<use href="#right" x="0" y="60" />
+<use href="#left" x="0" y="80" />
+
+</svg>

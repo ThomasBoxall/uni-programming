@@ -6,91 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patches</title>
     <style>
-        #fan line{
-            stroke: red;
+        img{
+            border: 1px dashed orange;
+            margin: 0.5em;
         }
-        #circleOnSquareW rect{
-            fill: white;
-        }
-        #circleOnSquareW circle{
-            fill: red;
-        }
-        #circleOnSquareR rect{
-            fill: red;
-        }
-        #circleOnSquareR circle{
-            fill: white;
-        }
-        
     </style>
 </head>
 <body>
-    <svg width="200" height="100">
-      <defs>
-        <g id="fan" linecap="round">
-          <line x1="00" y1="00" x2="00" y2="100"  />
-          <line x1="00" y1="10" x2="10" y2="100"  />
-          <line x1="00" y1="20" x2="20" y2="100"  />
-          <line x1="00" y1="30" x2="30" y2="100"  />
-          <line x1="00" y1="40" x2="40" y2="100"  />
-          <line x1="00" y1="50" x2="50" y2="100"  />
-          <line x1="00" y1="60" x2="60" y2="100"  />
-          <line x1="00" y1="70" x2="70" y2="100"  />
-          <line x1="00" y1="80" x2="80" y2="100"  />
-          <line x1="00" y1="90" x2="90" y2="100"  />
-          <line x1="00" y1="100" x2="100" y2="100"  />
-        </g>
-        <g id="linePatch">
-            <use href="#fan" x="0" y="0" />
-            <use href="#fan" x="-100" y="-100" transform="scale(-1,-1)"/>
-        </g>
-        <!-- MAKE CIRCLE ON SQUARE PATCH -->
-        <g id="circleOnSquareW">
-            <rect x="0" y="0" width="20" height="20"  />
-            <circle cx="5" cy="5" r="5" />
-            <circle cx="5" cy="15" r="5" />
-            <circle cx="15" cy="5" r="5" />
-            <circle cx="15" cy="15" r="5" />
-        </g>
-        <g id="circleOnSquareR">
-            <rect x="0" y="0" width="20" height="20"  />
-            <circle cx="5" cy="5" r="5" />
-            <circle cx="5" cy="15" r="5" />
-            <circle cx="15" cy="5" r="5" />
-            <circle cx="15" cy="15" r="5" />
-        </g>
-        <g id="circlePatch">
-            <use href="#circleOnSquareR" x="0" y="0" />
-            <use href="#circleOnSquareW" x="20" y="0" />
-            <use href="#circleOnSquareR" x="40" y="0" />
-            <use href="#circleOnSquareW" x="60" y="0" />
-            <use href="#circleOnSquareR" x="80" y="0" />
-            <use href="#circleOnSquareW" x="0" y="20" />
-            <use href="#circleOnSquareR" x="20" y="20" />
-            <use href="#circleOnSquareW" x="40" y="20" />
-            <use href="#circleOnSquareR" x="60" y="20" />
-            <use href="#circleOnSquareW" x="80" y="20" />
-            <use href="#circleOnSquareR" x="0" y="40" />
-            <use href="#circleOnSquareW" x="20" y="40" />
-            <use href="#circleOnSquareR" x="40" y="40" />
-            <use href="#circleOnSquareW" x="60" y="40" />
-            <use href="#circleOnSquareR" x="80" y="40" />
-            <use href="#circleOnSquareW" x="0" y="60" />
-            <use href="#circleOnSquareR" x="20" y="60" />
-            <use href="#circleOnSquareW" x="40" y="60" />
-            <use href="#circleOnSquareR" x="60" y="60" />
-            <use href="#circleOnSquareW" x="80" y="60" />
-            <use href="#circleOnSquareR" x="0" y="80" />
-            <use href="#circleOnSquareW" x="20" y="80" />
-            <use href="#circleOnSquareR" x="40" y="80" />
-            <use href="#circleOnSquareW" x="60" y="80" />
-            <use href="#circleOnSquareR" x="80" y="80" />
-
-        </g>
-
-      </defs>
-      <use href="#circlePatch" x="0" y="0"/>
-      <use href="#linePatch" x="100" y="0" class="red"/>
-    </svg>
+    <img src="00-00.svg" alt="patch 00-00">
+    <img src="00-01.svg" alt="patch 00-01">
+    <img src="00-02.svg" alt="patch 00-02">
+    <img src="00-03.svg" alt="patch 00-03">
 </body>
 </html>
