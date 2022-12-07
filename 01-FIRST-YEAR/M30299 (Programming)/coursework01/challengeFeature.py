@@ -1,5 +1,6 @@
 # ITEM 3 COURSEWORK - up2108121
 from graphics import *
+import time
 
 # HELPER FUNCTIONS
 def centrePoint(tlPoint, radius):
@@ -27,10 +28,11 @@ def drawRectangle(win, tlPoint, brPoint, colour):
     return r
 
 
-def drawLine(win, point1, point2, colour):
+def drawLine(win, point1, point2, colour, thickness=1):
     """Draws line on screen and returns line object"""
     l = Line(point1, point2)
     l.setOutline(colour)
+    l.setWidth(thickness)
     l.draw(win)
     return l
 
@@ -207,6 +209,120 @@ def getPatch(clickPos):
     yCoord = y // 100
     return Point(xCoord * 100, yCoord * 100), xCoord, yCoord
 
+def drawBorder(win, patchPos):
+    border = []
+    border.append(drawLine(win, Point(patchPos.getX(), patchPos.getY()), Point(patchPos.getX()+100, patchPos.getY()), "black", 4))
+    border.append(drawLine(win, Point(patchPos.getX(), patchPos.getY()), Point(patchPos.getX(), patchPos.getY()+100), "black", 4))
+    border.append(drawLine(win, Point(patchPos.getX()+100, patchPos.getY()), Point(patchPos.getX()+100, patchPos.getY()+100), "black", 4))
+    border.append(drawLine(win, Point(patchPos.getX(), patchPos.getY()+100), Point(patchPos.getX()+100, patchPos.getY()+100), "black", 4))
+    return border
+
+def undrawBorder(border):
+    for each in border:
+        print(type(each))
+        each.undraw()
+    border.clear()
+
+def borderFix(border, win, patchPos):
+    undrawBorder(border)
+    return drawBorder(win, patchPos)
+
+def challenge(win, patchArray, size, colours):
+    """Challenge feature"""    
+     # ask about this line and if it should exist or not?
+    # print(patchArray[int(pos.getY()/100)][int(pos.getX()/100)])
+    # for each in patchArray[int(pos.getY()/100)][int(pos.getX()/100)]:
+    #     # patchArray.remove(each)
+    #     each.undraw()
+    # patchArray[int(pos.getY()/100)][int(pos.getX()/100)].clear()
+    # print("x", patchArray[int(pos.getY()/100)][int(pos.getX()/100)])
+
+    doChallenge = True
+    patchSelected = False
+    while doChallenge:
+        if not patchSelected:
+            pos = win.getMouse()
+            selectedPoint, selectedX, selectedY = getPatch(pos) 
+            border = drawBorder(win, selectedPoint)
+            patchSelected = True
+        keySelect = win.getKey()
+        if keySelect == "Escape":
+            undrawBorder(border)
+            patchSelected = False
+            print("esc")
+        elif keySelect == "d":
+            for each in patchArray[int(selectedY)][int(selectedX)]:
+                each.undraw()
+            patchArray[int(selectedY)][int(selectedX)].clear()
+            print(patchArray[int(selectedY)][int(selectedX)])
+        if patchArray[int(selectedY)][int(selectedX)] == []:
+            if keySelect == "1":
+                drawPlainPatch(win, colours[0], selectedPoint, patchArray)
+                border = borderFix(border, win, selectedPoint)
+            elif keySelect == "2":
+                drawPlainPatch(win, colours[1], selectedPoint, patchArray)
+                border = borderFix(border, win, selectedPoint)
+            elif keySelect == "3":
+                drawPlainPatch(win, colours[2], selectedPoint, patchArray)
+                border = borderFix(border, win, selectedPoint)
+            elif keySelect == "4":
+                drawCirclePatch(win, colours[0], selectedPoint, patchArray)
+                border = borderFix(border, win, selectedPoint)
+            elif keySelect == "5":
+                drawCirclePatch(win, colours[1], selectedPoint, patchArray)
+                border = borderFix(border, win, selectedPoint)
+            elif keySelect == "6":
+                drawCirclePatch(win, colours[2], selectedPoint, patchArray)
+                border = borderFix(border, win, selectedPoint)
+            elif keySelect == "7":
+                drawLinePatch(win, colours[0], selectedPoint, patchArray)
+                border = borderFix(border, win, selectedPoint)
+            elif keySelect == "8":
+                drawLinePatch(win, colours[1], selectedPoint, patchArray)
+                border = borderFix(border, win, selectedPoint)
+            elif keySelect == "9":
+                drawLinePatch(win, colours[2], selectedPoint, patchArray)
+                border = borderFix(border, win, selectedPoint)
+        if keySelect == "Up":
+            if patchArray[int(selectedY)-1][int(selectedX)] == []:
+                patchArray[int(selectedY)-1][int(selectedX)] = patchArray[int(selectedY)][int(selectedX)] # set new index to be old index
+                for each in patchArray[int(selectedY)-1][int(selectedX)]:
+                    # move each object in the patch one by one to the new location
+                    for x in range (0,5):
+                        time.sleep(0.01)
+                        each.move(0,-20)
+                patchArray[int(selectedY)][int(selectedX)] = [] # empty the old index
+        elif keySelect == "Down":
+            if patchArray[int(selectedY)+1][int(selectedX)] == []:
+                patchArray[int(selectedY)+1][int(selectedX)] = patchArray[int(selectedY)][int(selectedX)] # set new index to be old index
+                for each in patchArray[int(selectedY)+1][int(selectedX)]:
+                    # move each object in the patch one by one to the new location
+                    for x in range (0,5):
+                        time.sleep(0.01)
+                        each.move(0,+20)
+                patchArray[int(selectedY)][int(selectedX)] = [] # empty the old index
+        elif keySelect == "Right":
+            if patchArray[int(selectedY)][int(selectedX)+1] == []:
+                patchArray[int(selectedY)][int(selectedX)+1] = patchArray[int(selectedY)][int(selectedX)] # set new index to be old index
+                for each in patchArray[int(selectedY)][int(selectedX)+1]:
+                    # move each object in the patch one by one to the new location
+                    for x in range (0,5):
+                        time.sleep(0.01)
+                        each.move(+20,0)
+                patchArray[int(selectedY)][int(selectedX)] = [] # empty the old index
+        elif keySelect == "Left":
+            if patchArray[int(selectedY)][int(selectedX)-1] == []:
+                patchArray[int(selectedY)][int(selectedX)-1] = patchArray[int(selectedY)][int(selectedX)] # set new index to be old index
+                for each in patchArray[int(selectedY)][int(selectedX)-1]:
+                    # move each object in the patch one by one to the new location
+                    for x in range (0,5):
+                        time.sleep(0.01)
+                        each.move(-20,0)
+                patchArray[int(selectedY)][int(selectedX)] = [] # empty the old index
+
+    # border = drawBorder(win, selectedPoint)
+
+
 def main():
     colours, size = getUserInput()
     # at this point the user inputs are valid and can be manipulated
@@ -216,15 +332,9 @@ def main():
     populateWindow(win, colours, size, patchArray)
     # while True:
     #     print(getPatch(win.getMouse()))
-    print(patchArray)
-    
-    pos = win.getMouse() # ask about this line and if it should exist or not?
-    print(patchArray[int(pos.getY()/100)][int(pos.getX()/100)])
-    for each in patchArray[int(pos.getY()/100)][int(pos.getX()/100)]:
-        # patchArray.remove(each)
-        each.undraw()
-    patchArray[int(pos.getY()/100)][int(pos.getX()/100)].clear()
-    print("x", patchArray[int(pos.getY()/100)][int(pos.getX()/100)])
+    #challenge(win, patchArray, size)
+    challenge(win, patchArray, size, colours)
+
     win.getMouse()
 
 main()
