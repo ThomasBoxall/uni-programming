@@ -1,7 +1,7 @@
 # ITEM 3 COURSEWORK - up2108121
 
 from graphics import *
-import time
+import time # used for animating movement of patches
 
 ############################################# OBJECT DRAWING FUNCTIONS BELOW ############################################
 
@@ -23,7 +23,7 @@ def drawRectangle(win, tlPoint, brPoint, colour):
     r.setOutline(colour)
     return r
 
-# draws line on screen and returns line object. Default value of thickness set to 1
+# draws line on screen and returns line object. Default value of thickness set to 1 as this is only needed in some places
 def drawLine(win, point1, point2, colour, thickness=1):
     """Draws line on screen and returns line object"""
     l = Line(point1, point2)
@@ -60,7 +60,7 @@ def getBrPoint(tlPoint, width, height):
     brPoint = Point(x, y)
     return brPoint
 
-# checks to see if toValidate is within validOptions and returns True/ False depending on that
+# checks to see if toValidate (str) is within validOptions (list) and returns True/ False depending on that
 def validateString(validOptions, toValidate):
     if toValidate in validOptions:
         foundValid = True
@@ -68,7 +68,7 @@ def validateString(validOptions, toValidate):
         foundValid = False
     return foundValid
 
-# checks to see if toValidate is within validOptions. If valid, returns True and integer conversion of toValidate. If not valid, returns False and 0
+# checks to see if toValidate (str) is within validOptions (list). If valid, returns True and integer conversion of toValidate. If not valid, returns False and 0
 def validateInt(validOptions, toValidate):
     foundValid = False
     intToValidate = 0
@@ -168,17 +168,6 @@ def drawPlainPatch(win, colour, tl, patchList):
 
 ############################################# MAIN PROGRAM FUNCTIONS BELOW ############################################
 
-# main function, is program entry point and controls flow throughout the program
-def main():
-    colours, size = getUserInput()
-    # at this point the user inputs are valid and can be manipulated
-    size = size * 100 # increase size to 100 times input size so that its correct scale to pass into the GraphWin constructor and populateWindow() functions
-    win = winInit(size) # use a function to initialise the GraphWin object and configure it for use.
-    patchList = [] # declare the patchList before use
-    populateWindow(win, colours, size, patchList) # fill out the window with patches
-    challenge(win, patchList, size, colours) # run the challenge feature
-    win.getMouse() # somewhat obsolete line (as challenge() contains a while true loop), prevents window from shutting when programme finished
-
 # main patch drawing function. Iterates through Y and x and populates each space on grid with correct patch
 def populateWindow(win, colours, dimension, patchList):
     for y in range(0,dimension,100):
@@ -203,25 +192,27 @@ def getUserInput():
     """prompts user to enter three colours then an integer then validates against valid options stored in this function. Returns a list for colours and a int for size with validated user inputs in it"""
     acceptableColours = ["red", "green", "blue", "purple", "orange", "cyan"]
     acceptableSizes = ["5", "7"] # these are strings so we can validate without causing casting errors. They get casted in the validateInt function
-    inputValid = False
+    inputValid = False # used to control the re-entry of inputs should they not be valid
     while inputValid == False:
         printWelcomeMessage(acceptableColours, acceptableSizes)
-        inputValid = True
-        size = input("Please enter the size of the patchwork (NB. this will be both the width and height): ")
+        inputValid = True # set to true so we can set to false should one input be invalid.
+        # GET SIZE INPUT & VALIDATE
+        size = input("Please enter the size of the patchwork (NB. this will be both the width and height in terms of patches): ")
         # validate number input
         sizeValid, sizeInt = validateInt(acceptableSizes, size)
         if not sizeValid:
             inputValid = False
-        colours = []
+        # GET COLOURS INPUT AND VALIDATE
+        colours = [] # get an empty list ready for inputted colours to be put in
         for x in range(0,3):
             colourInp = input("Please enter a colour: ").lower()
             if not validateString(acceptableColours, colourInp):
                 inputValid = False # we don't directly set inputValid to be the returned value from validateString as it will return True and we don't ever want to set inputValid to True as this breaks validation
-            colours.append(colourInp)
+            colours.append(colourInp) # if colour valid, append it to the list of colours
         if not inputValid:
-            print("One or more inputs you entered is invalid. Please re-enter them.")
+            print("\nOne or more inputs you entered is invalid. Please re-enter them.\n")
         else:
-            print("Inputs valid, generating patchwork.")
+            print("Inputs valid, generating patchwork.") # confirm to the user that their inputs are valid before moving onto the next stage
     return colours, sizeInt
 
 # displays a welcome message to the user and displays valid sizes and colours
@@ -244,6 +235,7 @@ def winInit(size):
 
 
 ############################################ CHALLENGE FEATURES BELOW ############################################
+# code quality does NOT matter.
 
 def getPatch(clickPos):
     """Gets top left coordinate of selected patch and returns point & list index of it"""
@@ -352,7 +344,7 @@ def challenge(win, patchList, size, colours):
             if keySelect == "Up" and checkMoveValid(int(selectedY)-1, int(selectedX), size, patchList):
                 patchList[int(selectedY)-1][int(selectedX)] = patchList[int(selectedY)][int(selectedX)] # set new index to be old index
                 movePatch(int(selectedY)-1, int(selectedX), 0, -100, patchList)
-                patchList[int(selectedY)][int(selectedX)] = [] # empty the old index
+                patchList[int(selectedY)][int(selectedX)] = [] # empty the old index (do it this way as list.clear() doesn't work quite right)
             elif keySelect == "Down" and checkMoveValid(int(selectedY)+1, int(selectedX), size, patchList):
                 patchList[int(selectedY)+1][int(selectedX)] = patchList[int(selectedY)][int(selectedX)] # set new index to be old index
                 movePatch(int(selectedY)+1, int(selectedX), 0, +100, patchList)
@@ -370,6 +362,17 @@ def challenge(win, patchList, size, colours):
 
 
 ############################################ PROGRAM ENTRY POINT BELOW ############################################
+
+# main function, is program entry point and controls flow throughout the program
+def main():
+    colours, size = getUserInput()
+    # at this point the user inputs are valid and can be manipulated
+    size = size * 100 # increase size to 100 times input size so that its correct scale to pass into the GraphWin constructor and populateWindow() functions
+    win = winInit(size) # use a function to initialise the GraphWin object and configure it for use.
+    patchList = [] # declare the patchList before use
+    populateWindow(win, colours, size, patchList) # fill out the window with patches
+    challenge(win, patchList, size, colours) # run the challenge feature
+    win.getMouse() # somewhat obsolete line (as challenge() contains a while true loop), prevents window from shutting when programme finished
 
 main()
 
