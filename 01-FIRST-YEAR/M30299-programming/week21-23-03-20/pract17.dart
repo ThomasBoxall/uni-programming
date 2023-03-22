@@ -6,11 +6,11 @@ void main(){
 }
 
 String personalGreeting(String name){
-  return "Hey ${name} 👋";
+  return "Hey $name 👋";
 }
 
 String formalName(String firstName, String familyName){
-  return "${firstName[0]}. ${familyName}";
+  return "${firstName[0]}. $familyName";
 }
 
 String gradeTest(int mark){

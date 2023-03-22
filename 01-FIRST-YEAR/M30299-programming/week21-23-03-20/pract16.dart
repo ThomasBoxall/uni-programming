@@ -1,7 +1,14 @@
 import 'dart:math';
 
 void main(){
-  print(distanceBetweenTwoPoints(1, 2, 4, 6));
+  print(roundToDP(distanceBetweenTwoPoints(1, 2, 4, 6), 2));
+}
+
+double roundToDP(double number, int dp){
+  number = number * pow(10, dp);
+  number = number.roundToDouble();
+  number = number / pow(10, dp);
+  return number;
 }
 
 double circumferenceOfCircle(double radius){
