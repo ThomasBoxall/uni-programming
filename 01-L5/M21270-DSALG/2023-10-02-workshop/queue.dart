@@ -74,18 +74,22 @@ class CircularQueue extends Queue{
   CircularQueue();
 
   void enqueue(var newDataToAdd){
-    if(tail < MAX_SIZE - 1 || tail < head){
-      // stick it on the tail
-      data.add(newDataToAdd);
+    if(tail - head == MAX_SIZE){
+      print("queue full, can't insert.");
+    }else{
+      int insertIndex = tail % MAX_SIZE;
       tail++;
-      print("enqueue success normal");
-    } else if(tail == MAX_SIZE - 1 && head > 0){
-      // tail can now be 0
-      data[0] = newDataToAdd;
-      tail = 0;
-    } else if(tail == MAX_SIZE && head == 0){
-      //full
-      print("Full");
+      data.insert(insertIndex, newDataToAdd);
+    }
+  }
+  
+  void dequeue(){
+    if (head == tail){
+      print("queue empty, can't dequeue");
+    } else{
+      int removeIndex = head % MAX_SIZE;
+      head++;
+      data[removeIndex] = null;
     }
   }
 }

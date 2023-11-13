@@ -174,7 +174,7 @@ def ex2():
     for i in range (0,100):
         tree.search(random_integers_python[random.randint(0, max(random_integers_python))])
 
-    for i in range (0,100):
+    for j in range (0,100):
         tree.delete(random_integers_python[random.randint(0, max(random_integers_python))])
     
 
