@@ -33,7 +33,7 @@ volumeOfCylinder r h = areaOfCircle r * h
 
 -- q5
 distance :: Float -> Float -> Float -> Float -> Float
-distance x1 y1 x2 y2 = sqrt((y1 - y2)^2 + (x1-x2)^2)
+distance x1 y1 x2 y2 = sqrt ((y1 - y2)^2 + (x1-x2)^2)
 
 -- q6 (using a helper function to check individual pair)
 threeDifferent :: Int -> Int -> Int -> Bool
