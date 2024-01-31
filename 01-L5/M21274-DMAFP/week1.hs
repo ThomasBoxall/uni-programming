@@ -40,15 +40,15 @@ threeDifferent :: Int -> Int -> Int -> Bool
 threeDifferent a b c = different a b && different a c && different b c && different a c
 
 different :: Int -> Int -> Bool
-different a b = if a/=b then True else False
+different a b = a/=b
 
 -- q7
 divisibleBy :: Int -> Int -> Bool
-divisibleBy a b = if (mod a b) == 0 then True else False
+divisibleBy a b = (mod a b) == 0
 
 -- q8
 isEven :: Int -> Bool
-isEven a = if (mod a 2) == 0 then True else False
+isEven a = divisibleBy a 2
 
 -- q9 (using q2's function to help)
 averageThree :: Int -> Int -> Int -> Float
@@ -56,4 +56,4 @@ averageThree a b c = fromIntegral (sumThree a b c) / 3
 
 -- q10 
 absolute :: Int -> Int
-absolute a = if a >= 0 then a else a * (-1)
+absolute a = if a >= 0 then a else a * (-1) 
