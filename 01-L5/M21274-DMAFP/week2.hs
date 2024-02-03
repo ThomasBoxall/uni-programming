@@ -59,8 +59,16 @@ howManyAboveAverage x y z
 -- q7
 validDate :: Int -> Int -> Bool
 validDate d m
-    | m == 1 || m == 3 || m == 5 || m = 7 || m == 8 || m == 10 || 12 && d <= 31 = True
+    | (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12) && d <= 31 = True
     | m == 2 && d <= 29 = True
-    | m == 4 || m == 6 || m == 9 || m == 11 && d <= 30 = True
+    | (m == 4 || m == 6 || m == 9 || m == 11) && d <= 30 = True
     | otherwise = False
     
+-- q8
+daysInMonth :: Int -> Int -> Int
+daysInMonth m y
+    | m == 2 = daysInFeb y
+    | m == 4 || m == 6 || m == 9 || m == 11 = 30
+    | otherwise = 31 -- we can assume all inputs will be valid so can just do this
+    where
+        daysInFeb y = if (mod y 4 == 0) then 29 else 28
