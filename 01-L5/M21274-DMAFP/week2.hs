@@ -33,8 +33,10 @@ sumDiagonalLengths a b c = dl a + dl b + dl c
 -- q5
 taxiFare :: Int -> Float
 taxiFare dist
-    | dist <= 10 = 2.20 + (fromIntegral(dist) * 0.5)
-    | otherwise = 2.20 + (10 * 0.5) + (fromIntegral(dist-10) * 0.3)
+    | dist <= 10 = baseFair + (fromIntegral(dist) * 0.5)
+    | otherwise = baseFair + (10 * 0.5) + (fromIntegral(dist-10) * 0.3)
+    where
+        baseFair = 2.20
 
 -- q6
 howManyAboveAverage :: Int -> Int -> Int -> Int
