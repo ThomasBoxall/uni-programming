@@ -3,7 +3,7 @@
 -- We don't import '||' from the prelude, so that we can
 -- define our own version
 
-import Prelude hiding ((||), (&&))
+import Prelude hiding ((||), (&&), gcd)
 
 -- The following line declares the || operator (which we are about to
 -- re-define) to be right associative and to have precedence 2. This
@@ -112,14 +112,47 @@ smallNumbers x
     | otherwise = error "thats smaller than 0"
 
 -- q6
+-- sumSquares :: Int -> Int
+-- sumSquares x
+--     | x == 0 = 0
+--     | x > 0 = x ^ 2 + sumSquares (x-1)
+--     | otherwise = error "negative!"
+
+-- q5 rewrite (for q11)
 sumSquares :: Int -> Int
-sumSquares x
-    | x == 0 = 0
-    | x > 0 = x ^ 2 + sumSquares (x-1)
-    | otherwise = error "negative!"
+sumSquares 0 = 0
+sumSquares _ > 0 = _ ^ 2 + sumSquares (_ - 1)
+sumSquares _ = error "negative!"
 
 -- q7
--- power :: Int -> Int -> Int
--- power b p
---     | p == 1 = 0
--- to be continued
+power :: Int -> Int -> Int
+power b p
+    | p == 1 = b
+    | p >= 1 = power (b * b) (p - 1) 
+    | otherwise = error "negative"
+
+-- to be continued FIX THIS ONE
+
+-- q8
+sumFromTo :: Int -> Int -> Int
+sumFromTo f t
+    | t < f = 0
+    | t >= f = f + sumFromTo (f + 1) t
+
+-- q9
+gcd :: Int -> Int -> Int
+gcd a b
+    | a == b = a
+    | a > b = gcd (a - b) b
+    | b > a = gcd (b - a) a
+    | otherwise = error "error"
+
+-- q10
+intSquareRoot :: Int -> Int
+intSquareRoot n = findRoot n n
+
+findRoot :: Int -> Int -> Int
+findRoot n s
+    | n >= (s * s) = s
+    | s > 0 = findRoot n (s-1)
+    | otherwise = error "not found"
