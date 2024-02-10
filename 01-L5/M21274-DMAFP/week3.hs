@@ -105,11 +105,17 @@ validDate :: Int -> Int -> Bool
 validDate d m =  daysInMonth m >= d
 
 -- q5
-smallNumbers :: Int -> Int
-smallNumbers x
-    | x == 0 = 0
-    | x > 0 = x + smallNumbers (x-1)
-    | otherwise = error "thats smaller than 0"
+-- sumNumbers :: Int -> Int
+-- sumNumbers x
+--     | x == 0 = 0
+--     | x > 0 = x + sumNumbers (x-1)
+--     | otherwise = error "thats smaller than 0"
+
+-- q5 rewrite (for q11)
+sumNumbers :: Int -> Int
+sumNumbers 0 = 0
+sumNumbers x = x + sumNumbers (x-1)
+-- negative number, who's she?
 
 -- q6
 -- sumSquares :: Int -> Int
@@ -118,20 +124,22 @@ smallNumbers x
 --     | x > 0 = x ^ 2 + sumSquares (x-1)
 --     | otherwise = error "negative!"
 
--- q5 rewrite (for q11)
+-- q6 rewrite (for q11)
 sumSquares :: Int -> Int
 sumSquares 0 = 0
-sumSquares _ > 0 = _ ^ 2 + sumSquares (_ - 1)
-sumSquares _ = error "negative!"
+sumSquares q = q * q + sumSquares (q - 1)
 
 -- q7
-power :: Int -> Int -> Int
-power b p
-    | p == 1 = b
-    | p >= 1 = power (b * b) (p - 1) 
-    | otherwise = error "negative"
+-- power :: Int -> Int -> Int
+-- power b p
+--     | p == 0 = 1
+--     | p >=1 = b * power b (p-1)
+--     | otherwise = error "negative"
 
--- to be continued FIX THIS ONE
+-- q7 rewrite (for q11)
+power :: Int -> Int -> Int
+power b 0 = 1
+power b p = b * power b (p-1)
 
 -- q8
 sumFromTo :: Int -> Int -> Int
@@ -156,3 +164,6 @@ findRoot n s
     | n >= (s * s) = s
     | s > 0 = findRoot n (s-1)
     | otherwise = error "not found"
+
+-- q11
+-- questions redefined: 6, 5, 
