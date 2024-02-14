@@ -79,3 +79,27 @@ capMarks input = [capMark (a,b) | (a,b) <- input]
 -- q9
 gradeStudents :: [StudentMark] -> [(String, Char)]
 gradeStudents input = [(a, grade (a,b)) | (a,b) <- input]
+
+-- q10
+duplicate :: String -> Int -> String
+duplicate str num
+    | num > 1 = duplicate str (num-1) ++ str
+    | otherwise = str
+-- duplicate str num = [str ++ str | i <- [1 .. num] ] doesn't work. not quite sure what to do with it
+
+-- q11
+divisors :: Int -> [Int]
+divisors x = [i | i <- [1 .. x], mod x i == 0 ]
+
+-- q12
+isPrime :: Int -> Bool
+isPrime numb
+    | numb > 0 = divisors numb == [1,numb]
+    | otherwise = False
+
+-- q13
+split :: [(a,b)] -> ([a], [b])
+split inp = ([fst x | x <- inp ], [snd y | y <- inp ])
+
+splitAlternate :: [(a,b)] -> ([a], [b])
+splitAlternate inp = ([a | (a,_) <- inp], [b | (_,b) <- inp])
