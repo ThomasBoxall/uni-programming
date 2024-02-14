@@ -89,8 +89,8 @@ exOr _ _ = False
 
 -- q3
 ifThenElse :: Bool -> Int -> Int -> Int
-ifThenElse True a b = a
-ifThenElse False a b = b
+ifThenElse True a _ = a
+ifThenElse _ _ b = b
 
 -- q4
 daysInMonth :: Int -> Int
@@ -115,7 +115,6 @@ validDate d m =  daysInMonth m >= d
 sumNumbers :: Int -> Int
 sumNumbers 0 = 0
 sumNumbers x = x + sumNumbers (x-1)
--- negative number, who's she?
 
 -- q6
 -- sumSquares :: Int -> Int
@@ -127,7 +126,7 @@ sumNumbers x = x + sumNumbers (x-1)
 -- q6 rewrite (for q11)
 sumSquares :: Int -> Int
 sumSquares 0 = 0
-sumSquares q = q * q + sumSquares (q - 1)
+sumSquares q = q ^ 2 + sumSquares (q - 1)
 
 -- q7
 -- power :: Int -> Int -> Int
@@ -138,14 +137,14 @@ sumSquares q = q * q + sumSquares (q - 1)
 
 -- q7 rewrite (for q11)
 power :: Int -> Int -> Int
-power b 0 = 1
+power _ 0 = 1
 power b p = b * power b (p-1)
 
 -- q8
 sumFromTo :: Int -> Int -> Int
 sumFromTo f t
     | t < f = 0
-    | t >= f = f + sumFromTo (f + 1) t
+    | otherwise = f + sumFromTo (f + 1) t
 
 -- q9
 gcd :: Int -> Int -> Int
@@ -161,9 +160,9 @@ intSquareRoot n = findRoot n n
 
 findRoot :: Int -> Int -> Int
 findRoot n s
-    | n >= (s * s) = s
+    | n >= s ^ 2 = s
     | s > 0 = findRoot n (s-1)
     | otherwise = error "not found"
 
 -- q11
--- questions redefined: 6, 5, 
+-- questions redefined: 6, 5, 7
