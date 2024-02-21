@@ -74,7 +74,7 @@ onlyDigits x = [a | a <- x, isDigit a]
 
 -- q8
 capMarks :: [StudentMark] -> [StudentMark]
-capMarks input = [capMark (a,b) | (a,b) <- input]
+capMarks input = [capMark sMarkToCap | sMarkToCap <- input]
 
 -- q9
 gradeStudents :: [StudentMark] -> [(String, Char)]
