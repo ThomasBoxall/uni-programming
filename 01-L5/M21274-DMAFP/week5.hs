@@ -106,4 +106,46 @@ countIntegers toFind (x:xs)
     | otherwise = countIntegers toFind xs
 
 -- q9
--- removeAll :: Int -> [Int] -> [Int]
+removeAll :: Int -> [Int] -> [Int]
+removeAll _ [] = []
+removeAll toRemove (x:xs)
+  | x == toRemove = removeAll toRemove xs
+  | otherwise = x : removeAll toRemove xs
+
+-- q10
+removeAllButFirst :: Int -> [Int] -> [Int]
+removeAllButFirst _ [] = []
+removeAllButFirst toRemove (x:xs)
+    | toRemove == x = x : removeAll toRemove xs
+    | otherwise = x : removeAllButFirst toRemove xs
+
+-- q11
+listMarks :: String -> [StudentMark] -> [Int]
+listMarks _ [] = []
+listMarks name (x:xs)
+  | name == fst x = snd x : listMarks name xs
+  | otherwise = listMarks name xs
+
+-- q12
+sorted :: [Int] -> Bool
+sorted [] = True
+sorted (x:xs)
+  | xs == [] = True -- requires this line to catch where xs is empty and we only have an x
+  | x <= xs!!0 = True && sorted xs
+  | otherwise = False
+
+-- q13
+prefix :: [Int] -> [Int] -> Bool
+prefix [] _ = True
+prefix (x:xs) (y:ys)
+  | x == y = True && prefix xs ys
+  | otherwise = False
+
+-- q14. Doesn't quite work
+subSequence :: [Int] -> [Int] -> Bool
+subsequence [] [] = False
+subSequence (x:xs) (y:ys)
+  | prefix (x:xs) (y:ys) == True = True
+  | prefix (x:xs) (y:ys) == False = subSequence xs ys 
+--   | otherwise = subSequence xs ys
+  
