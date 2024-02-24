@@ -141,11 +141,11 @@ prefix (x:xs) (y:ys)
   | x == y = True && prefix xs ys
   | otherwise = False
 
--- q14. Doesn't quite work
+-- q14
 subSequence :: [Int] -> [Int] -> Bool
-subsequence [] [] = False
+subsequence _ [] = False
 subSequence (x:xs) (y:ys)
   | prefix (x:xs) (y:ys) == True = True
-  | prefix (x:xs) (y:ys) == False = subSequence xs ys 
---   | otherwise = subSequence xs ys
+  | prefix (x:xs) (y:ys) == False = subSequence (x:xs) ys
+  -- | otherwise = False
   
