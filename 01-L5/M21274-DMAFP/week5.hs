@@ -74,9 +74,8 @@ duplicateHead (x:xs) = x:(x:xs)
 
 --q3 
 rotate :: [a] -> [a]
-rotate [a] = [a]
-rotate [a,b] = [a,b]
 rotate (x:y:xs) = y:x:xs
+rotate xs = xs
 
 -- q4
 listLength :: [a] -> Int
@@ -129,10 +128,13 @@ listMarks name (x:xs)
 -- q12
 sorted :: [Int] -> Bool
 sorted [] = True
-sorted (x:xs)
-  | xs == [] = True -- requires this line to catch where xs is empty and we only have an x
-  | x <= xs!!0 = True && sorted xs
-  | otherwise = False
+sorted _ = True
+sorted (x:y:xs) = x <= y && sorted y:ys
+
+
+  -- | xs == [] = True -- requires this line to catch where xs is empty and we only have an x
+  -- | x <= xs!!0 = True && sorted xs
+  -- | otherwise = False
 
 -- q13
 prefix :: [Int] -> [Int] -> Bool
