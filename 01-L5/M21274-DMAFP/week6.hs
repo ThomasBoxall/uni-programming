@@ -60,3 +60,33 @@ squareRoots xs = map (sqrt) (filter (>=0) xs)
 -- q7
 countBetween :: Float -> Float -> [Float] -> Int
 countBetween a b xs = length (filter (<= b) (filter (>= a) xs))
+
+-- q8 solution 1
+alwaysPositive :: (Float -> Float) -> [Float] -> Bool
+alwaysPositive f xs = length (filter (>=0) (map f xs)) == length xs
+
+-- q8 solution 2
+alwaysPositiveTwo :: (Float -> Float) -> [Float] -> Bool
+alwaysPositiveTwo f xs = andAll (map ((>=0) . f) xs)
+
+andAll :: [Bool] -> Bool
+andAll xs = foldr (&&) True xs
+
+-- q8 solution 3
+alwaysPositiveThree :: (Float -> Float) -> [Float] -> Bool
+alwaysPositiveThree f = andAll . map ((>=0) . f)
+
+-- q9
+productSquareRoots :: [Float] -> Float
+productSquareRoots xs = foldr (*) 1 (filter (>=0) (map sqrt xs))
+
+-- q10
+removeFirst :: (a -> Bool) -> [a] -> [a]
+removeFirst _ [] = []
+removeFirst f (x:xs)
+    | (f) x  =  xs
+    | otherwise = x : removeFirst f xs
+
+-- q11
+-- removeLast :: (a -> Bool) -> [a] -> [a]
+-- cont'd here 
