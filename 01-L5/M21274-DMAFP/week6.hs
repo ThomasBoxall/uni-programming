@@ -88,5 +88,9 @@ removeFirst f (x:xs)
     | otherwise = x : removeFirst f xs
 
 -- q11
--- removeLast :: (a -> Bool) -> [a] -> [a]
--- cont'd here 
+removeLast :: (a -> Bool) -> [a] -> [a]
+removeLast funct xs = reverse (removeFirst funct (reverse xs))
+
+-- q12
+zeroToTenLambda :: [Int] -> [Int]
+zeroToTenLambda xs = filter (\xs -> xs <=10 && xs >= 0) xs
