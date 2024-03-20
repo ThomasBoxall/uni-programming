@@ -51,11 +51,12 @@ sumSquares xs =  foldr (+) 0 (map (^2) xs)
 
 -- q5
 zeroToTen :: [Int] -> [Int]
-zeroToTen xs = filter (<= 10) (filter (>= 0) xs)
+-- zeroToTen xs = filter (<= 10) (filter (>= 0) xs)
+zeroToTen = filter (<= 10) . filter (>= 0)
 
 -- q6 
 squareRoots :: [Float] -> [Float]
-squareRoots xs = map (sqrt) (filter (>=0) xs)
+squareRoots = map (sqrt) . filter (>=0)
 
 -- q7
 countBetween :: Float -> Float -> [Float] -> Int
