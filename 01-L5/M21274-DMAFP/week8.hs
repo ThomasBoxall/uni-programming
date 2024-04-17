@@ -66,3 +66,31 @@ copyFile = do
     writeFile pathToPaste fileContents
 
 -- q4
+buildList :: [String] -> IO()
+buildList list = do
+    putStrLn "Enter string or press return to exit"
+    newString <- getLine
+    if newString == ""
+        then print list
+        else buildList (list ++ [newString])
+
+listBuilder :: IO()
+listBuilder = do
+    buildList []
+
+-- q5
+adder :: Int -> Int -> IO()
+adder total remaining = do
+    putStrLn "enter number to add"
+    numbStr <- getLine
+    let numb = read numbStr :: Int
+    if (remaining - 1 > 0)
+        then adder (total + numb) (remaining - 1)
+        else print(total + numb)
+    
+adderCaller :: IO()
+adderCaller = do
+    putStrLn "how many numbers do you want to add?"
+    numbStr <- getLine
+    let toAdd = read numbStr :: Int
+    adder 0 toAdd
