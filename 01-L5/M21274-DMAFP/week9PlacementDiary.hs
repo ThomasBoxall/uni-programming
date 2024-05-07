@@ -23,11 +23,11 @@ placementEntries =
 
 placementManager :: IO ()
 placementManager = do
-    putStrLn = "== PLACEMENT DIARY MANAGER =="
-    putStrLn = "   (1) Mark an entry as 'reviewed'"
-    putStrLn = "   (2) Update the content of a diary entry"
-    putStrLn = "   (3) Add a new diary entry"
-    putStrLn = "   (4) Show all diary entries where they are too short"
+    putStrLn "== PLACEMENT DIARY MANAGER =="
+    putStrLn "   (1) Mark an entry as 'reviewed'"
+    putStrLn "   (2) Update the content of a diary entry"
+    putStrLn "   (3) Add a new diary entry"
+    putStrLn "   (4) Show all diary entries where they are too short"
 
 boolToString :: Bool -> String
 boolToString True = "Reviewed"
